@@ -1,6 +1,6 @@
 <div align="center">
 
-  <h1 align="center">🔐 Nexora</h1>
+  <h1 align="center">🔐 kiyora</h1>
   <h3>Privacy-First Zero-Knowledge Access Control on Midnight Network</h3>
   <p><i>Prove you're authorized — without revealing who you are.</i></p>
 
@@ -11,43 +11,36 @@
   <img src="https://img.shields.io/badge/1AM_Wallet-FF5733?style=for-the-badge" alt="1AM Wallet" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
 
-<br /><br />
-
-  <h3>
-    🌐 <a href="#">Live Demo Website</a>
-    &nbsp;&nbsp;•&nbsp;&nbsp;
-    🎬 <a href="#-demo">Demo Video Walkthrough</a>
-    &nbsp;&nbsp;•&nbsp;&nbsp;
-    🏗 <a href="#-architecture">Architecture</a>
-  </h3>
-
+<br />
   <br />
-  <a href="">
+  <a href="https://github.com/rishiisarkar/kiyora/actions/runs/32278800387">
     <img src="https://img.shields.io/badge/CI%2FCD-passing-brightgreen?style=for-the-badge" alt="CI/CD Pipeline Status" />
   </a>
 </div>
 <br />
-<img width="2534" height="1314" alt="image" src="https://github.com/user-attachments/assets/f24ed750-4d7c-4a84-8402-026a6d941047" />
+<img width="1901" height="918" alt="Screenshot 2026-08-19 223024" src="https://github.com/user-attachments/assets/84b1e036-f2d8-44ca-84c7-507dd0371f7c" />
+
 <br />
 <br />
 
-> Confidential, production-grade Zero-Knowledge access control gateway built on the Midnight Network. Nexora lets users prove they are authorized to access a resource — without ever revealing their identity, wallet history, or the underlying credential.
+> Confidential, production-grade Zero-Knowledge access control gateway built on the Midnight Network. kiyora lets users prove they are authorized to access a resource — without ever revealing their identity, wallet history, or the underlying credential.
 
-**Nexora** replaces traditional wallet-based allowlists and token-gated access with a Zero-Knowledge Merkle membership proof. Members prove they hold a valid, enrolled credential and generate a single-use nullifier locally in their browser — nothing sensitive ever touches the chain. Built for the **First Quarter (Level 3)** challenge as part of the **RiseIn & Midnight Foundation "New Moon to Full: Monthly Moonshots on Midnight" Program 2026**.
+**kiyora** replaces traditional wallet-based allowlists and token-gated access with a Zero-Knowledge Merkle membership proof. Members prove they hold a valid, enrolled credential and generate a single-use nullifier locally in their browser — nothing sensitive ever touches the chain. Built for the **First Quarter (Level 3)** challenge as part of the **RiseIn & Midnight Foundation "New Moon to Full: Monthly Moonshots on Midnight" Program 2026**.
 
 ---
 ## 🌒 Moonshots Level 1 → 3 — Requirements & Submission Checklist
 ## 🌐 Live Demo
-[https://nexora-app-web3.vercel.app/](https://nexora-app-web3.vercel.app/)
+[https://kiyora-app-web3.vercel.app/](https://kiyora-app-web3.vercel.app/)
 
+## **Demo Video** [Watch the kiyora Demo Video on Google Drive](https://drive.google.com/file/d/1cAb_dis5CkSjRz4XW3x5RSnGYpUv2BDh/view?usp=sharing)
 ---
 
 ## 📋 Quick Links & CheckList
 | Network     | Address                                                              |
 | ----------- | -------------------------------------------------------------------- |
-| **🌐Live Demo** | [https://nexora-app-web3.vercel.app/](https://nexora-app-web3.vercel.app/) |
+| **🌐Live Demo** | [https://kiyora-app-web3.vercel.app/](https://kiyora-app-web3.vercel.app/) |
 | **Preprod** | `0x85c6d5ce4fec74c33a17d4307290bf7d05878637b9f2e70bead1d90bdf5353cc` |
-| **Demo Video** |[Watch the Nexora Demo Video on Google Drive](https://drive.google.com/file/d/1kORStuYk75lLGvJRnh2td8-BcJ3vEhAo/view?usp=sharing) |
+| **Demo Video** |[Watch the kiyora Demo Video on Google Drive](https://drive.google.com/file/d/1cAb_dis5CkSjRz4XW3x5RSnGYpUv2BDh/view?usp=sharing) |
 | CI/CD pipeline running (workflow file + passing runs)                 |               ✅ **Passed**                |
 
 > Preprod deployed. Verify the new address on [Midnight Preprod Explorer](https://preprod.midnightexplorer.com/contracts/85c6d5ce4fec74c33a17d4307290bf7d05878637b9f2e70bead1d90bdf5353cc) 
@@ -85,6 +78,7 @@
 ### 3. CI & CD Running 
 
 
+
 ### 4. Commit Over 30 meaningful commits   ✅ **Passed**  
 
 **Submission Checklist**
@@ -112,7 +106,7 @@
 
 ## 🎬 Demo-Video
 
-[Watch the Nexora Demo Video on Google Drive](https://drive.google.com/file/d/1kORStuYk75lLGvJRnh2td8-BcJ3vEhAo/view?usp=sharing)
+[Watch the kiyora Demo Video on Google Drive](https://drive.google.com/file/d/1cAb_dis5CkSjRz4XW3x5RSnGYpUv2BDh/view?usp=sharing)
 
 ### What to Record (Under 2 Minutes)
 
@@ -139,7 +133,7 @@
 
 ## 💡 What This Does
 
-Nexora is a privacy-preserving access gateway where:
+kiyora is a privacy-preserving access gateway where:
 
 1. **Admins** deploy an access gate on the Midnight Preprod network and enroll authorized members by hashing their credentials into a Merkle Tree.
 2. **Members** connect their wallet (Lace or 1AM) and paste their secret credential locally in the browser.
@@ -212,7 +206,7 @@ This creates unnecessary privacy risk for a problem that should require zero dis
 
 ## 💡 Solution
 
-Nexora introduces a Zero-Knowledge access gateway. Instead of exposing a credential to prove access, the flow is:
+kiyora introduces a Zero-Knowledge access gateway. Instead of exposing a credential to prove access, the flow is:
 
 ```
 Secret Credential
@@ -348,8 +342,8 @@ Only proof validity reaches the blockchain. Secrets remain private forever.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Rimanshu-Singh/Nexora.git
-cd Nexora
+git clone https://github.com/Rimanshu-Singh/kiyora.git
+cd kiyora
 ```
 
 ### 2. Install Dependencies
@@ -400,7 +394,7 @@ Open `http://localhost:3000` in your browser.
 ## 📁 Project Structure
 
 ```text
-Nexora/
+kiyora/
 ├── contracts/
 │   ├── src/
 │   │   └── vault_pass.compact       ← ZK smart contract
@@ -417,7 +411,7 @@ Nexora/
 │
 ├── contracts/
 │   ├── src/
-│   │     Nexora.compact
+│   │     kiyora.compact
 │   ├── tests/
 │   └── compiler/
 │
@@ -431,15 +425,6 @@ Nexora/
 
 ---
 
-## 📸 Application Interface
-
-|           Landing Page           |           Admin Dashboard            |
-| :------------------------------: | :----------------------------------: |
-| _[placeholder — add screenshot]_ |   _[placeholder — add screenshot]_   |
-|      **Deploy Access Gate**      | **Member Access / Proof Generation** |
-| _[placeholder — add screenshot]_ |   _[placeholder — add screenshot]_   |
-
----
 
 ## 🧪 Testing
 
@@ -472,10 +457,10 @@ A GitHub Actions workflow compiles the Compact contract and runs the full test s
 .github/workflows/ci.yml
 ```
 
-_[placeholder — add CI/CD badge once workflow is live, e.g.]_
+<img width="1915" height="658" alt="Screenshot 2026-08-19 223155" src="https://github.com/user-attachments/assets/235632aa-710e-4ac8-9b63-af10c8cc1901" />
 
 ```md
-[![CI/CD Pipeline Status](https://github.com/Rimanshu-Singh/Nexora/actions/workflows/ci.yml/badge.svg)](https://github.com/Rimanshu-Singh/Nexora/actions/workflows/ci.yml)
+[![CI/CD Pipeline Status]
 ```
 
 ---
@@ -500,7 +485,7 @@ Contracts are deployed through the built-in Admin Dashboard. Each deployment cre
 
 ## 🛡️ Security Model
 
-Nexora never stores:
+kiyora never stores:
 
 - Raw credentials
 - Identity information
@@ -517,20 +502,6 @@ Replay attacks are prevented using cryptographic nullifiers — every proof is s
 
 ---
 
-## 🔮 Future Roadmap
-
-- [ ] Multi-gate management
-- [ ] Expiring credentials
-- [ ] Anonymous DAO voting
-- [ ] Enterprise identity verification
-- [ ] API access gateway
-- [ ] Multi-admin governance
-- [ ] zkBadge support
-- [ ] NFT private membership
-- [ ] OAuth integration
-- [ ] Cross-chain proof verification
-
----
 
 ## 🤝 Contributing
 
