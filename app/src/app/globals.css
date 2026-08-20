@@ -18,13 +18,13 @@
   --color-dark: #14161a;
   --color-border-subtle: #e3e1da;
 
-  --color-accent: #3f7d58;
-  --color-accent-hover: #346a4a;
-  --color-accent-pressed: #2d5f41;
-  --color-accent-soft: #8fb59c;
-  --color-accent-muted: #3f7d58;
-  --color-accent-faint: #5f8f70;
-  --color-accent-dim: #e7efe9;
+  --color-accent: #3f6f9f;
+  --color-accent-hover: #345e87;
+  --color-accent-pressed: #2d5378;
+  --color-accent-soft: #8fb0d4;
+  --color-accent-muted: #3f6f9f;
+  --color-accent-faint: #5f83ad;
+  --color-accent-dim: #e7eef7;
 
   --color-emerald-50: #eef7f1;
   --color-emerald-100: #d9ebde;
@@ -70,7 +70,7 @@
   --text-primary: #17181a;
   --text-muted: #85837c;
   --text-faint: #a3a199;
-  --accent-green: #3f7d58;
+  --accent-green: #3f6f9f;
   --border-subtle: #e3e1da;
 }
 
@@ -126,12 +126,12 @@ code {
 }
 
 ::selection {
-  background: #3f7d58;
+  background: var(--color-accent);
   color: #ffffff;
 }
 
 :focus-visible {
-  outline: 2px solid #3f7d58;
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
 
@@ -212,14 +212,14 @@ code {
 
 .nav-progress-bar {
   animation: nav-progress 1.1s ease-in-out infinite;
-  background-color: #3f7d58;
+  background-color: var(--color-accent);
 }
 
 .midnight-step {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
-  color: #3f7d58;
+  color: var(--color-accent);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,7 +1,8 @@
 .landingShell {
-  --nx-primary-rgb: 168 255 79;
+  --nx-primary-rgb: 79 168 255;
   --nx-primary: rgb(var(--nx-primary-rgb));
   --nx-primary-bright: color-mix(in srgb, var(--nx-primary) 78%, white);
+  --nx-primary-ink: color-mix(in srgb, var(--nx-primary) 12%, black);
   --nx-bg: #020706;
   --nx-surface: #07100d;
   --nx-surface-raised: #091511;
@@ -44,7 +45,7 @@
 
 .landingShell ::selection {
   background: var(--nx-primary);
-  color: #061006;
+  color: var(--nx-primary-ink);
 }
 
 .navbar {
@@ -128,7 +129,7 @@
   border-radius: 999px;
   background: linear-gradient(135deg, var(--nx-primary), var(--nx-primary-bright));
   box-shadow: 0 0 24px rgb(var(--nx-primary-rgb) / 0.16), inset 0 1px 0 rgb(255 255 255 / 0.38);
-  color: #061006;
+  color: var(--nx-primary-ink);
   font: inherit;
   font-size: 11px;
   font-weight: 750;
@@ -348,7 +349,7 @@
 .primaryButton {
   background: linear-gradient(135deg, var(--nx-primary), var(--nx-primary-bright));
   box-shadow: 0 0 28px rgb(var(--nx-primary-rgb) / 0.18), inset 0 1px 0 rgb(255 255 255 / 0.36);
-  color: #061006 !important;
+  color: var(--nx-primary-ink) !important;
 }
 
 .primaryButton:hover,
@@ -755,7 +756,7 @@
 .pipelineComplete i {
   background: var(--nx-primary);
   box-shadow: 0 0 22px rgb(var(--nx-primary-rgb) / 0.36);
-  color: #061006;
+  color: var(--nx-primary-ink);
 }
 
 .pipelineComplete span {
