@@ -28,9 +28,20 @@
 **kiyora** replaces traditional wallet-based allowlists and token-gated access with a Zero-Knowledge Merkle membership proof. Members prove they hold a valid, enrolled credential and generate a single-use nullifier locally in their browser — nothing sensitive ever touches the chain. Built for the **First Quarter (Level 3)** challenge as part of the **RiseIn & Midnight Foundation "New Moon to Full: Monthly Moonshots on Midnight" Program 2026**.
 
 ---
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [README.md](./README.md) | Complete and concise project overview |
+| [ARCHITECTURE.md](./Documents/Architecture.md) | System architecture, project structure, and implementation details |
+| [PROPOSAL.md](./Documents/PROPOSAL.md) | Product proposal and Zero Knowledge solution overview |
+| [PLAN.md](./Documents/PLAN.md) | Development roadmap and implementation plan |
+| [midnight_level3_privora_plan.md](./Documents/midnight_level3_privora_plan.md) | Original Level 3 project planning and design document |
+| [TRUST_MODEL.md](./Documents/TRUST_MODEL.md) | Privacy model, trust assumptions, and security boundaries |
+---
 ## 🌒 Moonshots Level 1 → 3 — Requirements & Submission Checklist
 ## 🌐 Live Demo
-[https://kiyora-app-web3.vercel.app/](https://kiyora-app-web3.vercel.app/)
+[https://kiyora-app.vercel.app/](https://kiyora-app.vercel.app/)
 
 ## **Demo Video** [Watch the kiyora Demo Video on Google Drive](https://drive.google.com/file/d/1cAb_dis5CkSjRz4XW3x5RSnGYpUv2BDh/view?usp=sharing)
 ---
@@ -38,7 +49,7 @@
 ## 📋 Quick Links & CheckList
 | Network     | Address                                                              |
 | ----------- | -------------------------------------------------------------------- |
-| **🌐Live Demo** | [https://kiyora-app-web3.vercel.app/](https://kiyora-app-web3.vercel.app/) |
+| **🌐Live Demo** | [https://kiyora-app.vercel.app/](https://kiyora-app.vercel.app/) |
 | **Preprod** | `0x85c6d5ce4fec74c33a17d4307290bf7d05878637b9f2e70bead1d90bdf5353cc` |
 | **Demo Video** |[Watch the kiyora Demo Video on Google Drive](https://drive.google.com/file/d/1cAb_dis5CkSjRz4XW3x5RSnGYpUv2BDh/view?usp=sharing) |
 | CI/CD pipeline running (workflow file + passing runs)                 |               ✅ **Passed**                |
