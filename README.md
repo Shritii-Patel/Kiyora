@@ -13,12 +13,12 @@
 
 <br />
   <br />
-  <a href="https://github.com/rishiisarkar/kiyora/actions/runs/32278800387">
+  <a href="https://github.com/Shritii-Patel/Kiyora/actions/runs/32346116973">
     <img src="https://img.shields.io/badge/CI%2FCD-passing-brightgreen?style=for-the-badge" alt="CI/CD Pipeline Status" />
   </a>
 </div>
 <br />
-<img width="1901" height="918" alt="Screenshot 2026-08-19 223024" src="https://github.com/user-attachments/assets/84b1e036-f2d8-44ca-84c7-507dd0371f7c" />
+<img width="1776" height="921" alt="Screenshot 2026-08-20 144428" src="https://github.com/user-attachments/assets/38a234c6-5588-4b0a-be93-719267dfd3a3" />
 
 <br />
 <br />
@@ -77,6 +77,7 @@
 
 ### 3. CI & CD Running 
 
+<img width="1878" height="727" alt="image" src="https://github.com/user-attachments/assets/f0b8f37a-6bfd-44e3-aeb7-3c2c055e902e" />
 
 
 ### 4. Commit Over 30 meaningful commits   ✅ **Passed**  
@@ -460,7 +461,10 @@ A GitHub Actions workflow compiles the Compact contract and runs the full test s
 <img width="1915" height="658" alt="Screenshot 2026-08-19 223155" src="https://github.com/user-attachments/assets/235632aa-710e-4ac8-9b63-af10c8cc1901" />
 
 ```md
-[![CI/CD Pipeline Status]
+<img width="1878" height="727" alt="image" src="https://github.com/user-attachments/assets/5e7be853-114f-41fc-9afe-3cf2e1949b12" />
+
+[![CI/CD Pipeline Status] (https://github.com/Shritii-Patel/Kiyora/actions/runs/32346116973)
+
 ```
 
 ---
