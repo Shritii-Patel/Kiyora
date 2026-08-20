@@ -9,7 +9,7 @@ export function LandingFooter() {
         <div className={styles.footerBrand}>
           <Link href="/" className={styles.brand}>
             <span className={styles.brandMark} aria-hidden="true"><Image src="/logo.svg" alt="" width={20} height={20} /></span>
-            <span>Nexora</span>
+            <span>Kiyora</span>
           </Link>
           <p>Private access infrastructure built with Midnight and zero-knowledge proofs.</p>
         </div>
@@ -34,7 +34,7 @@ export function LandingFooter() {
         </div>
       </div>
       <div className={styles.footerBottom}>
-        <span>&copy; 2026 Nexora</span>
+        <span>&copy; 2026 Kiyora</span>
         <span>Built on Midnight Preprod</span>
       </div>
     </footer>

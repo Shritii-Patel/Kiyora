@@ -76,7 +76,7 @@ export function LandingNavbar() {
             <span className={styles.brandMark} aria-hidden="true">
               <Image src="/logo.svg" alt="" width={20} height={20} priority />
             </span>
-            <span>Nexora</span>
+            <span>Kiyora</span>
           </Link>
 
           <nav className={styles.desktopNav} aria-label="Landing navigation">

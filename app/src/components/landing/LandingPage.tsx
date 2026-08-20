@@ -51,7 +51,7 @@ function Hero() {
         <div className={styles.heroContent}>
           <span className={styles.heroBadge}><span />Private access on Midnight</span>
           <h1>Prove access.<strong>Reveal nothing.</strong></h1>
-          <p>Nexora lets operators create private gates, issue credentials, and let approved members prove access with zero-knowledge proofs without revealing their credential.</p>
+          <p>Kiyora lets operators create private gates, issue credentials, and let approved members prove access with zero-knowledge proofs without revealing their credential.</p>
           <div className={styles.heroActions}>
             <Link href="/gate" className={styles.primaryButton}>Try the Live Demo <ArrowRight size={16} aria-hidden="true" /></Link>
             <Link href="/admin" className={styles.secondaryButton}>Open Operator Console</Link>
@@ -208,7 +208,7 @@ function PrivacySection() {
         <div className={styles.sectionCopy}>
           <Eyebrow>Why Midnight</Eyebrow>
           <h2>Privacy is part of<span>the architecture.</span></h2>
-          <p>Nexora uses Midnight and zero-knowledge proofs so members can prove they hold an approved credential without revealing the credential itself.</p>
+          <p>Kiyora uses Midnight and zero-knowledge proofs so members can prove they hold an approved credential without revealing the credential itself.</p>
           <div className={styles.privacyNotes}>
             <div><small>Stays private</small><span>Credential, witness, proof inputs</span></div>
             <div><small>Can be public</small><span>Allowlist root, nullifier, result</span></div>
@@ -264,7 +264,7 @@ function Statement() {
         <div className={styles.statementCopy}>
           <Eyebrow>Product principle</Eyebrow>
           <blockquote>&ldquo;Access should prove<br />eligibility &mdash; not expose<br />identity.&rdquo;</blockquote>
-          <p>Nexora turns private credentials into verifiable access while keeping sensitive membership data out of the public experience.</p>
+          <p>Kiyora turns private credentials into verifiable access while keeping sensitive membership data out of the public experience.</p>
         </div>
         <div className={styles.statementVisual} aria-hidden="true">
           <svg viewBox="0 0 440 420"><path d="M54 307 L220 92 L386 307 Z" /><path d="M112 307 L220 162 L328 307 Z" /><circle cx="220" cy="92" r="6" /><circle cx="54" cy="307" r="6" /><circle cx="386" cy="307" r="6" /></svg>
