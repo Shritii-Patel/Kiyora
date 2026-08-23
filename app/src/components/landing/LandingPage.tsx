@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
+  Binary,
   Check,
   CircuitBoard,
   EyeOff,
@@ -16,138 +17,195 @@ import { LandingFooter } from "./LandingFooter";
 import { LandingNavbar } from "./LandingNavbar";
 import styles from "./Landing.module.css";
 
-const ecosystem = ["Midnight", "Compact", "Zero-Knowledge", "Lace", "1AM Wallet"];
+const heroVideo =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260613_180732_a54afbf6-b30d-470e-861f-669871f09f67.mp4";
+
+const technologies = ["Midnight", "Compact", "Zero-Knowledge", "Lace", "1AM Wallet"];
 
 const howSteps = [
-  { icon: Network, label: "Create a private gate" },
-  { icon: KeyRound, label: "Issue private credentials" },
-  { icon: EyeOff, label: "Verify access without revealing them" },
+  "Credential",
+  "Local hashing",
+  "Private witness",
+  "ZK proof",
+  "Midnight",
+  "Access verified",
 ];
 
-const capabilities = [
-  { icon: LockKeyhole, title: "Private Gates", text: "Create controlled access experiences backed by Midnight." },
-  { icon: KeyRound, title: "Credential Enrollment", text: "Enroll credential hashes while raw credentials remain private." },
-  { icon: Fingerprint, title: "Zero-Knowledge Verification", text: "Prove membership without revealing the underlying credential." },
-  { icon: BadgeCheck, title: "One-Time Access", text: "Use nullifiers to prevent credential reuse when configured." },
-];
+const operatorSteps = ["Configure", "Connect", "Publish", "Issue Credential"];
+const memberSteps = ["Open Gate", "Connect", "Enter Credential", "Generate Proof", "Access Granted"];
 
-const technology = [
-  { value: "Midnight", label: "Preprod" },
-  { value: "Zero-Knowledge", label: "Proofs" },
-  { value: "Lace + 1AM", label: "Wallet Support" },
-  { value: "Private", label: "Credentials" },
+const features = [
+  {
+    icon: LockKeyhole,
+    title: "Private Gates",
+    text: "Create access-controlled spaces without exposing member identity.",
+  },
+  {
+    icon: KeyRound,
+    title: "Credential Enrollment",
+    text: "Issue and enroll credentials while keeping raw secrets private.",
+  },
+  {
+    icon: Fingerprint,
+    title: "Zero-Knowledge Verification",
+    text: "Prove eligibility without revealing the credential.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "Replay Protection",
+    text: "Use nullifiers and verification rules to prevent proof reuse.",
+  },
 ];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className={styles.eyebrow}>{children}</p>;
 }
 
+function CTAGroup({ className = "" }: { className?: string }) {
+  return (
+    <div className={`${styles.ctaGroup} ${className}`}>
+      <Link href="/gate" className={styles.primaryCta}>
+        <span>Launch Live Demo</span>
+        <i aria-hidden="true"><ArrowRight size={17} /></i>
+      </Link>
+      <Link href="/admin" className={styles.secondaryCta}>
+        Open Operator Console <ArrowRight size={15} aria-hidden="true" />
+      </Link>
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <section className={styles.heroSection}>
-      <div className={styles.hero}>
-        <div className={styles.heroGrid} aria-hidden="true" />
-        <div className={styles.heroBloom} aria-hidden="true" />
-        <div className={styles.heroContent}>
-          <span className={styles.heroBadge}><span />Private access on Midnight</span>
-          <h1>Prove access.<strong>Reveal nothing.</strong></h1>
-          <p>Kiyora lets operators create private gates, issue credentials, and let approved members prove access with zero-knowledge proofs without revealing their credential.</p>
-          <div className={styles.heroActions}>
-            <Link href="/gate" className={styles.primaryButton}>Try the Live Demo <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link href="/admin" className={styles.secondaryButton}>Open Operator Console</Link>
-          </div>
+      <video className={styles.heroVideo} autoPlay muted loop playsInline preload="auto" aria-hidden="true">
+        <source src={heroVideo} type="video/mp4" />
+      </video>
+      <div className={styles.starField} aria-hidden="true" />
+      <div className={styles.heroShade} aria-hidden="true" />
+      <div className={styles.heroBlueHaze} aria-hidden="true" />
+      <div className={styles.heroNoise} aria-hidden="true" />
+
+      <div className={styles.heroInner}>
+        <div className={styles.heroCopy}>
+          <div className={styles.heroEyebrow}>Private Access on Midnight</div>
+          <h1 aria-label="Prove access. Reveal nothing.">
+            <span><b>Prove access.</b></span>
+            <span className={styles.gradientLine}><b>Reveal nothing.</b></span>
+          </h1>
+          <p>
+            Kiyora lets users prove they are authorized without revealing their identity
+            or exposing the credential behind the proof.
+          </p>
+          <p className={styles.heroSubline}>Private credentials. Verifiable access. Zero identity exposure.</p>
+          <CTAGroup className={styles.heroActions} />
         </div>
-        <div className={styles.ecosystem}>
-          <p>Built with privacy-first infrastructure</p>
-          <div>
-            {ecosystem.map((item, index) => (
-              <span key={item} className={styles.ecosystemItem}>
-                <i aria-hidden="true">{[0, 1, 2, 3].map((cell) => <b key={cell} className={cell === index % 4 ? styles.activePixel : ""} />)}</i>
-                {item}
-              </span>
-            ))}
-          </div>
+
+        <div className={styles.heroType} aria-hidden="true">
+          <span>PRIVATE</span>
+          <span>ACCESS</span>
+        </div>
+
+        <div className={styles.microProof} aria-label="Private credential to zero-knowledge proof to access verified">
+          <span>Private Credential</span>
+          <i aria-hidden="true" />
+          <span>Zero-Knowledge Proof</span>
+          <i aria-hidden="true" />
+          <span>Access Verified</span>
         </div>
       </div>
     </section>
   );
 }
 
-function ProofNetwork() {
+function TechnologyStrip() {
   return (
-    <div className={styles.proofNetwork} role="img" aria-label="Credential proof moving through a private verification network">
-      <svg viewBox="0 0 620 500" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <section id="product" className={styles.techStrip} aria-label="Kiyora technology foundation">
+      <div className={styles.techStripInner}>
+        <p>Built on privacy-first infrastructure</p>
+        <div>
+          {technologies.map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProofVisualization() {
+  return (
+    <div className={styles.proofVisual} role="img" aria-label="Credential transformed into a zero-knowledge proof on Midnight">
+      <div className={styles.proofGrid} aria-hidden="true" />
+      <svg viewBox="0 0 680 560" aria-hidden="true">
         <defs>
-          <linearGradient id="nx-proof-line" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="currentColor" stopOpacity="0" />
-            <stop offset="0.5" stopColor="currentColor" stopOpacity="0.72" />
-            <stop offset="1" stopColor="currentColor" stopOpacity="0.08" />
+          <linearGradient id="proofTrace" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#ffffff" stopOpacity="0.05" />
+            <stop offset="0.5" stopColor="#29d9ff" stopOpacity="0.78" />
+            <stop offset="1" stopColor="#2f7bff" stopOpacity="0.16" />
           </linearGradient>
         </defs>
-        <path d="M88 116 L310 250 L526 94" />
-        <path d="M66 340 L310 250 L554 358" />
-        <path d="M178 430 L310 250 L446 426" />
-        <path d="M310 250 L310 54" />
-        <circle cx="88" cy="116" r="5" />
-        <circle cx="526" cy="94" r="5" />
-        <circle cx="66" cy="340" r="5" />
-        <circle cx="554" cy="358" r="5" />
-        <circle cx="178" cy="430" r="5" />
-        <circle cx="446" cy="426" r="5" />
-        <circle cx="310" cy="54" r="5" />
+        <path d="M100 94 C188 158 236 232 340 280 C450 330 494 398 586 468" />
+        <path d="M120 438 C208 354 258 314 340 280 C436 240 488 166 566 96" />
+        <path d="M340 70 L340 490" />
+        <path d="M72 280 L608 280" />
+        <circle cx="340" cy="280" r="78" />
+        <circle cx="340" cy="280" r="132" />
       </svg>
-      <span className={`${styles.networkNode} ${styles.nodeOne}`}>01</span>
-      <span className={`${styles.networkNode} ${styles.nodeTwo}`}>A7</span>
-      <span className={`${styles.networkNode} ${styles.nodeThree}`}>ZK</span>
-      <span className={`${styles.networkNode} ${styles.nodeFour}`}><Check size={13} /></span>
-      <div className={styles.coreLayerOne} aria-hidden="true" />
-      <div className={styles.coreLayerTwo} aria-hidden="true" />
-      <div className={styles.proofCore}>
-        <ShieldCheck size={54} strokeWidth={1.35} aria-hidden="true" />
-        <small>Proof core</small>
+      <div className={styles.proofCenter}>
+        <CircuitBoard size={34} aria-hidden="true" />
+        <strong>ZK</strong>
+        <span>proof node</span>
       </div>
-      <span className={styles.privateSignal}>credential private</span>
-      <span className={styles.verifiedSignal}>proof verified</span>
+      {howSteps.map((step, index) => (
+        <div key={step} className={`${styles.proofStep} ${styles[`proofStep${index + 1}` as keyof typeof styles]}`}>
+          <small>{String(index + 1).padStart(2, "0")}</small>
+          <span>{step}</span>
+        </div>
+      ))}
+      <div className={styles.hashLabel}>hash::credential.commitment</div>
+      <div className={styles.witnessLabel}>private_witness sealed locally</div>
     </div>
   );
 }
 
 function HowItWorks() {
   return (
-    <section id="how-it-works" className={`${styles.section} ${styles.howSection}`}>
+    <section id="how-it-works" className={styles.section}>
       <div className={`${styles.sectionInner} ${styles.howGrid} ${styles.reveal}`}>
         <div className={styles.sectionCopy}>
-          <Eyebrow>How it works</Eyebrow>
-          <h2>Private access,<span>made simple.</span></h2>
-          <p>Create a gate, issue a credential, and let approved members prove access privately.</p>
-          <div className={styles.stepList}>
-            {howSteps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <div key={step.label} className={styles.stepRow}>
-                  <small>0{index + 1}</small>
-                  <Icon size={18} strokeWidth={1.6} aria-hidden="true" />
-                  <strong>{step.label}</strong>
-                  <ArrowRight size={15} aria-hidden="true" />
-                </div>
-              );
-            })}
+          <Eyebrow>How Kiyora Works</Eyebrow>
+          <h2>Private access,<br />without identity exposure.</h2>
+          <p>
+            A member keeps credential material private, generates a proof locally,
+            and exposes only the minimum public state needed for verification.
+          </p>
+          <div className={styles.compactList}>
+            <span>Credential</span>
+            <span>Local hashing</span>
+            <span>Private witness</span>
+            <span>ZK proof</span>
+            <span>Midnight verification</span>
           </div>
         </div>
-        <ProofNetwork />
+        <ProofVisualization />
       </div>
     </section>
   );
 }
 
-function Pipeline({ label, icon: Icon, steps }: { label: string; icon: typeof Network; steps: string[] }) {
+function Pipeline({ label, steps, icon: Icon }: { label: string; steps: string[]; icon: typeof Network }) {
   return (
     <div className={styles.pipeline}>
-      <div className={styles.pipelineLabel}><Icon size={18} strokeWidth={1.6} aria-hidden="true" /><span>{label}</span></div>
+      <div className={styles.pipelineHeader}>
+        <Icon size={18} strokeWidth={1.6} aria-hidden="true" />
+        <span>{label}</span>
+      </div>
       <div className={styles.pipelineTrack}>
+        <span className={styles.activePulse} aria-hidden="true" />
         {steps.map((step, index) => (
-          <div key={step} className={`${styles.pipelineNode} ${index === steps.length - 1 ? styles.pipelineComplete : ""}`}>
-            <i aria-hidden="true">{index === steps.length - 1 ? <Check size={12} /> : String(index + 1).padStart(2, "0")}</i>
+          <div key={step} className={styles.pipelineNode}>
+            <i>{String(index + 1).padStart(2, "0")}</i>
             <span>{step}</span>
           </div>
         ))}
@@ -156,88 +214,99 @@ function Pipeline({ label, icon: Icon, steps }: { label: string; icon: typeof Ne
   );
 }
 
-function ProductFlow() {
+function AccessFlow() {
   return (
     <section className={styles.section}>
       <div className={`${styles.sectionInner} ${styles.reveal}`}>
         <div className={styles.splitHeading}>
-          <div><Eyebrow>Product flow</Eyebrow><h2>Two paths.<br />One private gate.</h2></div>
-          <p>Operators publish the access rules. Members prove they satisfy them. Private credentials never enter the public experience.</p>
+          <div>
+            <Eyebrow>Operator + Member Flow</Eyebrow>
+            <h2>Two paths.<br />One private gate.</h2>
+          </div>
+          <p>
+            Operators publish the gate and credential rules. Members prove eligibility
+            without turning the gate into an identity collection point.
+          </p>
         </div>
-        <div className={styles.pipelineStage}>
-          <div className={styles.pipelineGrid} aria-hidden="true" />
-          <Pipeline label="Operator" icon={Network} steps={["Configure", "Connect", "Publish", "Issue credential"]} />
-          <Pipeline label="Member" icon={WalletCards} steps={["Open gate", "Connect", "Credential", "Generate proof", "Access granted"]} />
-          <div className={styles.ledgerStatus}><span /> Ledger state synchronized <b>PREPROD</b></div>
+        <div className={styles.flowPanel}>
+          <Pipeline label="Operator" icon={Network} steps={operatorSteps} />
+          <Pipeline label="Member" icon={WalletCards} steps={memberSteps} />
         </div>
       </div>
     </section>
   );
 }
 
-function ArchitectureVisual() {
-  return (
-    <div className={styles.architecture} role="img" aria-label="Private credential converted to a zero-knowledge proof and public verification result">
-      <div className={styles.architectureGrid} aria-hidden="true" />
-      <div className={styles.layerHeader}><span>Private layer</span><small>local only</small></div>
-      <div className={styles.privateLayer}>
-        <div><KeyRound size={18} aria-hidden="true" /><span><small>SECRET</small>Credential</span></div>
-        <div><EyeOff size={18} aria-hidden="true" /><span><small>WITNESS</small>Private inputs</span></div>
-      </div>
-      <div className={styles.proofConnector}><i /><i /><i /></div>
-      <div className={styles.proofBlock}>
-        <CircuitBoard size={24} aria-hidden="true" />
-        <span><small>ZERO-KNOWLEDGE</small>Proof generated locally</span>
-        <b>VALID</b>
-      </div>
-      <div className={styles.proofConnector}><i /><i /><i /></div>
-      <div className={styles.layerHeader}><span>Public layer</span><small>Midnight</small></div>
-      <div className={styles.publicLayer}>
-        <div><small>ROOT</small><span>Allowlist</span></div>
-        <div><small>NULLIFIER</small><span>One-time signal</span></div>
-        <div className={styles.publicResult}><small>RESULT</small><span><Check size={14} /> Access confirmed</span></div>
-      </div>
-    </div>
-  );
-}
-
-function PrivacySection() {
+function PrivacyArchitecture() {
   return (
     <section id="privacy" className={`${styles.section} ${styles.privacySection}`}>
       <div className={`${styles.sectionInner} ${styles.privacyGrid} ${styles.reveal}`}>
-        <div className={styles.sectionCopy}>
-          <Eyebrow>Why Midnight</Eyebrow>
-          <h2>Privacy is part of<span>the architecture.</span></h2>
-          <p>Kiyora uses Midnight and zero-knowledge proofs so members can prove they hold an approved credential without revealing the credential itself.</p>
-          <div className={styles.privacyNotes}>
-            <div><small>Stays private</small><span>Credential, witness, proof inputs</span></div>
-            <div><small>Can be public</small><span>Allowlist root, nullifier, result</span></div>
+        <div className={styles.architectureVisual} role="img" aria-label="Private side, zero-knowledge proof, and public side architecture">
+          <div className={styles.archColumn}>
+            <strong>Private Side</strong>
+            <span><KeyRound size={16} /> Credential</span>
+            <span><EyeOff size={16} /> Private witness</span>
+            <span><Binary size={16} /> Secret inputs</span>
+          </div>
+          <div className={styles.archBridge}>
+            <i aria-hidden="true" />
+            <div>
+              <ShieldCheck size={28} aria-hidden="true" />
+              <span>Zero-Knowledge Proof</span>
+            </div>
+            <i aria-hidden="true" />
+          </div>
+          <div className={styles.archColumn}>
+            <strong>Public Side</strong>
+            <span>Allowlist root</span>
+            <span>Nullifier</span>
+            <span>Verification result</span>
           </div>
         </div>
-        <ArchitectureVisual />
+        <div className={styles.sectionCopy}>
+          <Eyebrow>Privacy Architecture</Eyebrow>
+          <h2>Privacy is part of<br />the architecture.</h2>
+          <p>
+            Raw credentials never go on-chain. Kiyora separates private witness data
+            from public verification state, so applications can verify access without
+            collecting unnecessary identity data.
+          </p>
+          <div className={styles.archNotes}>
+            <span>Private credential material stays local</span>
+            <span>Only proof/public verification state is exposed</span>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
-function Capabilities() {
+function Features() {
   return (
     <section className={styles.section}>
       <div className={`${styles.sectionInner} ${styles.reveal}`}>
         <div className={styles.splitHeading}>
-          <div><Eyebrow>Private by design</Eyebrow><h2>Everything needed for<br />verifiable access.</h2></div>
-          <p>A focused infrastructure layer for operators and members, from private gate creation through proof verification.</p>
+          <div>
+            <Eyebrow>Core Product Features</Eyebrow>
+            <h2>Everything needed for<br />verifiable private access.</h2>
+          </div>
+          <p>
+            Focused primitives for credential enrollment, gated access, local proof
+            generation, and replay-resistant verification.
+          </p>
         </div>
-        <div className={styles.capabilityGrid}>
-          {capabilities.map((capability, index) => {
-            const Icon = capability.icon;
+        <div className={styles.featureGrid}>
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
             return (
-              <article key={capability.title} className={styles.capability}>
-                <span className={styles.cardIndex}>0{index + 1}</span>
-                <div className={styles.capabilityIcon}><Icon size={25} strokeWidth={1.45} aria-hidden="true" /></div>
-                <h3>{capability.title}</h3>
-                <p>{capability.text}</p>
-                <div className={styles.cardSignal} aria-hidden="true"><i /><i /><i /></div>
+              <article key={feature.title} className={styles.featureModule}>
+                <div className={styles.featureTop}>
+                  <Icon size={22} strokeWidth={1.5} aria-hidden="true" />
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                </div>
+                <h3>{feature.title}</h3>
+                <p>{feature.text}</p>
+                <div className={styles.featureTrace} aria-hidden="true" />
               </article>
             );
           })}
@@ -247,11 +316,43 @@ function Capabilities() {
   );
 }
 
-function TechnologyStrip() {
+function WhyMidnight() {
   return (
-    <section className={styles.technologyStrip}>
-      <div className={styles.technologyInner}>
-        {technology.map((item) => <div key={item.value}><strong>{item.value}</strong><span>{item.label}</span></div>)}
+    <section id="technology" className={`${styles.section} ${styles.midnightSection}`}>
+      <div className={`${styles.sectionInner} ${styles.midnightGrid} ${styles.reveal}`}>
+        <div className={styles.sectionCopy}>
+          <Eyebrow>Why Midnight</Eyebrow>
+          <h2>Built for privacy.<br />Verified on-chain.</h2>
+          <p>
+            Kiyora uses Midnight&apos;s dual-state architecture to separate private
+            witness data from public verification state.
+          </p>
+          <div className={styles.techTags}>
+            <span>Midnight</span>
+            <span>Compact</span>
+            <span>Preprod</span>
+            <span>Zero-Knowledge</span>
+          </div>
+        </div>
+        <div className={styles.midnightDiagram} role="img" aria-label="Private state to ZK circuit to public verification">
+          <div>
+            <small>01</small>
+            <strong>Private State</strong>
+            <span>credential witness</span>
+          </div>
+          <i aria-hidden="true" />
+          <div className={styles.circuitNode}>
+            <small>02</small>
+            <strong>ZK Circuit</strong>
+            <span>Compact proof rules</span>
+          </div>
+          <i aria-hidden="true" />
+          <div>
+            <small>03</small>
+            <strong>Public Verification</strong>
+            <span>root, nullifier, result</span>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -259,19 +360,15 @@ function TechnologyStrip() {
 
 function Statement() {
   return (
-    <section className={styles.section}>
-      <div className={`${styles.statement} ${styles.reveal}`}>
-        <div className={styles.statementCopy}>
-          <Eyebrow>Product principle</Eyebrow>
-          <blockquote>&ldquo;Access should prove<br />eligibility &mdash; not expose<br />identity.&rdquo;</blockquote>
-          <p>Kiyora turns private credentials into verifiable access while keeping sensitive membership data out of the public experience.</p>
-        </div>
-        <div className={styles.statementVisual} aria-hidden="true">
-          <svg viewBox="0 0 440 420"><path d="M54 307 L220 92 L386 307 Z" /><path d="M112 307 L220 162 L328 307 Z" /><circle cx="220" cy="92" r="6" /><circle cx="54" cy="307" r="6" /><circle cx="386" cy="307" r="6" /></svg>
-          <span>&ldquo;</span>
-          <i className={styles.statementNodeOne} />
-          <i className={styles.statementNodeTwo} />
-        </div>
+    <section className={styles.statementSection}>
+      <div className={`${styles.statementInner} ${styles.reveal}`}>
+        <blockquote>
+          &ldquo;Access should prove<br />eligibility - not expose<br />identity.&rdquo;
+        </blockquote>
+        <p>
+          Kiyora separates identity from eligibility so applications can verify access
+          without collecting unnecessary personal information.
+        </p>
       </div>
     </section>
   );
@@ -279,17 +376,13 @@ function Statement() {
 
 function FinalCTA() {
   return (
-    <section className={styles.ctaSection}>
-      <div className={styles.finalCta}>
-        <div className={styles.ctaGrid} aria-hidden="true" />
-        <div className={styles.ctaContent}>
-          <h2>Ready to create private access?</h2>
-          <p>Launch a gate, issue credentials, and let members verify access privately on Midnight.</p>
-          <div>
-            <Link href="/gate" className={styles.primaryButton}>Try the Live Demo <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link href="/admin" className={styles.secondaryButton}>Open Operator Console</Link>
-          </div>
-        </div>
+    <section className={styles.finalSection}>
+      <div className={styles.finalHorizon} aria-hidden="true" />
+      <div className={`${styles.finalInner} ${styles.reveal}`}>
+        <Eyebrow>Launch Kiyora</Eyebrow>
+        <h2>Ready to create<br />private access?</h2>
+        <p>Create a gate, issue credentials, and let members verify access privately on Midnight.</p>
+        <CTAGroup />
       </div>
     </section>
   );
@@ -301,11 +394,12 @@ export function LandingPage() {
       <LandingNavbar />
       <main>
         <Hero />
-        <HowItWorks />
-        <ProductFlow />
-        <PrivacySection />
-        <Capabilities />
         <TechnologyStrip />
+        <HowItWorks />
+        <AccessFlow />
+        <PrivacyArchitecture />
+        <Features />
+        <WhyMidnight />
         <Statement />
         <FinalCTA />
       </main>

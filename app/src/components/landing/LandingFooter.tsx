@@ -5,18 +5,20 @@ import styles from "./Landing.module.css";
 export function LandingFooter() {
   return (
     <footer className={styles.footer}>
+      <div className={styles.footerGlow} aria-hidden="true" />
       <div className={styles.footerGrid}>
         <div className={styles.footerBrand}>
           <Link href="/" className={styles.brand}>
-            <span className={styles.brandMark} aria-hidden="true"><Image src="/logo.svg" alt="" width={20} height={20} /></span>
+            <span className={styles.brandMark} aria-hidden="true">
+              <Image src="/logo.svg" alt="" width={20} height={20} />
+            </span>
             <span>Kiyora</span>
           </Link>
           <p>Private access infrastructure built with Midnight and zero-knowledge proofs.</p>
         </div>
         <div className={styles.footerColumn}>
           <h3>Product</h3>
-          <Link href="/">Try it</Link>
-          <Link href="/#how-it-works">How it works</Link>
+          <Link href="/gate">Live Demo</Link>
           <Link href="/admin">Operator Console</Link>
           <Link href="/gate">Member Gate</Link>
         </div>
@@ -27,15 +29,14 @@ export function LandingFooter() {
           <Link href="/#privacy">Zero-Knowledge</Link>
         </div>
         <div className={styles.footerColumn}>
-          <h3>Access</h3>
+          <h3>Wallets</h3>
           <span>Lace</span>
           <span>1AM Wallet</span>
-          <span>Preprod</span>
         </div>
       </div>
       <div className={styles.footerBottom}>
         <span>&copy; 2026 Kiyora</span>
-        <span>Built on Midnight Preprod</span>
+        <span>Midnight Preprod</span>
       </div>
     </footer>
   );
