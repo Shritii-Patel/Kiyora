@@ -18,7 +18,7 @@
   </a>
 </div>
 <br />
-<img width="1776" height="921" alt="Screenshot 2026-08-20 144428" src="https://github.com/user-attachments/assets/38a234c6-5588-4b0a-be93-719267dfd3a3" />
+<img width="1872" height="897" alt="image" src="https://github.com/user-attachments/assets/d98a7fa3-d0b9-4a64-8b8a-a2f6ca17f016" />
 
 <br />
 <br />
