@@ -36,13 +36,52 @@
 | [ARCHITECTURE.md](./Documents/Architecture.md) | System architecture, project structure, and implementation details |
 | [PROPOSAL.md](./Documents/PROPOSAL.md) | Product proposal and Zero Knowledge solution overview |
 | [PLAN.md](./Documents/PLAN.md) | Development roadmap and implementation plan |
-| [midnight_level3_privora_plan.md](./Documents/midnight_level3_privora_plan.md) | Original Level 3 project planning and design document |
+| [midnight_level3_kiyora_plan.md](./Documents/midnight_level3_kiyora_plan.md) | Original Level 3 project planning and design document |
 | [TRUST_MODEL.md](./Documents/TRUST_MODEL.md) | Privacy model, trust assumptions, and security boundaries |
 ---
 ## 🌒 Moonshots Level 1 → 3 — Requirements & Submission Checklist
 ## 🌐 Live Demo
-[https://kiyora-app.vercel.app/](https://kiyora-app.vercel.app/)
+[https://kiyora-app.vercel.app](https://kiyora-app.vercel.app)
+## 📱 kiyora in Action
 
+<table align="center" >
+  <tr>
+    <td align="center">
+      <img
+    src="https://github.com/user-attachments/assets/fea09660-9204-455f-a6ed-2960e3fc211f" 
+"
+        alt="kiyora Demo 1"
+        width="220"
+        hspace="15"
+      />
+    </td>
+    <td align="center">
+
+      <img
+        src="https://github.com/user-attachments/assets/4043476f-581b-4e2b-bfb8-0d10de31686c"
+        alt="kiyora Demo 2"
+        width="220"
+        hspace="15"
+      />
+    </td>
+    <td align="center">
+      <img
+        src="https://github.com/user-attachments/assets/0c61226f-b563-45f5-88b5-91724c9c8bec"
+        alt="kiyora Demo 3"
+        width="220"
+        hspace="15"
+      />
+    </td>
+  </tr>
+</table>
+
+## 𝕏 Follow kiyora
+
+Follow **kiyora** on X for product updates, Midnight development progress, privacy insights, and Preprod releases.
+
+👉 **[Follow @kiyoraWeb3 on X](https://x.com/kiyoraWeb3/)**
+
+---
 ## **Demo Video** [Watch the kiyora Demo Video on Google Drive](https://drive.google.com/file/d/1cAb_dis5CkSjRz4XW3x5RSnGYpUv2BDh/view?usp=sharing)
 ---
 
