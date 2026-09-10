@@ -56,7 +56,6 @@
       />
     </td>
     <td align="center">
-
       <img
         src="https://github.com/user-attachments/assets/4043476f-581b-4e2b-bfb8-0d10de31686c"
         alt="kiyora Demo 2"
