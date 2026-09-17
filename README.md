@@ -39,7 +39,13 @@
 | [midnight_level3_kiyora_plan.md](./Documents/midnight_level3_kiyora_plan.md) | Original Level 3 project planning and design document |
 | [TRUST_MODEL.md](./Documents/TRUST_MODEL.md) | Privacy model, trust assumptions, and security boundaries |
 ---
-## 🌒 Moonshots Level 1 → 3 — Requirements & Submission Checklist
+## Level 5 - User Validation & Iteration
+- **Target:** 50 Preprod users
+- **Current Verified:** 50 / 50
+- **User Directory:** See [`USERS.md`](./Documents/USERS.md) for full verified addresses.
+- **Feedback & Changes:** See [`Documents/FEEDBACK.md`](./Documents/FEEDBACK.md) for raw feedback logs, feedback themes, and applied code iterations.
+
+## 🌒 Moonshots Level 1 → 6 — Requirements & Submission Checklist
 ## 🌐 Live Demo
 [https://kiyora-app.vercel.app](https://kiyora-app.vercel.app)
 ## 📱 kiyora in Action
