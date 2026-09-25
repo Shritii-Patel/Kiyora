@@ -28,16 +28,20 @@
 **kiyora** replaces traditional wallet-based allowlists and token-gated access with a Zero-Knowledge Merkle membership proof. Members prove they hold a valid, enrolled credential and generate a single-use nullifier locally in their browser — nothing sensitive ever touches the chain. Built for the **First Quarter (Level 3)** challenge as part of the **RiseIn & Midnight Foundation "New Moon to Full: Monthly Moonshots on Midnight" Program 2026**.
 
 ---
-## Documentation
+## 📚 Documentation
 
-| Document | Description |
-|----------|-------------|
-| [README.md](./README.md) | Complete and concise project overview |
-| [ARCHITECTURE.md](./Documents/Architecture.md) | System architecture, project structure, and implementation details |
-| [PROPOSAL.md](./Documents/PROPOSAL.md) | Product proposal and Zero Knowledge solution overview |
-| [PLAN.md](./Documents/PLAN.md) | Development roadmap and implementation plan |
-| [midnight_level3_kiyora_plan.md](./Documents/midnight_level3_kiyora_plan.md) | Original Level 3 project planning and design document |
-| [TRUST_MODEL.md](./Documents/TRUST_MODEL.md) | Privacy model, trust assumptions, and security boundaries |
+| Document                                                           | Description                                                                              |
+| ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| [README.md](./README.md)                                           | Complete project overview, features, setup, architecture, and deployment information     |
+| [Architecture.md](./Architecture.md)                               | System architecture, project structure, components, and implementation details           |
+| [FEEDBACK.md](./FEEDBACK.md)                                       | User testing feedback, ratings, issues, suggestions, and documented feedback loop        |
+| [LAUNCH_USERS.md](./LAUNCH_USERS.md)                               | Launch user information and Midnight Preprod user onboarding evidence                    |
+| [PLAN.md](./PLAN.md)                                               | Development roadmap, milestones, and implementation plan                                 |
+| [PROPOSAL.md](./PROPOSAL.md)                                       | Product proposal and Zero-Knowledge solution overview                                    |
+| [TRUST_MODEL.md](./TRUST_MODEL.md)                                 | Privacy model, trust assumptions, security boundaries, and threat considerations         |
+| [USERS.md](./USERS.md)                                             | Midnight Preprod user wallet addresses and verification evidence                         |
+| [midnight_level6_Nexora_plan.md](./midnight_level6_Nexora_plan.md) | Level 6 Nexora planning, requirements, implementation progress, and submission checklist |
+
 ---
 ## Level 6 Users
 See [`LAUNCH_USERS.md`](./Documents/LAUNCH_USERS.md)
@@ -119,18 +123,6 @@ Follow **kiyora** on X for product updates, Midnight development progress, priva
 | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Explorer | [Midnight Preprod Explorer](https://preprod.midnightexplorer.com/contracts/85c6d5ce4fec74c33a17d4307290bf7d05878637b9f2e70bead1d90bdf5353cc)                                                                                                        |
 | Contract | [0x85c6d5ce4fec74c33a17d4307290bf7d05878637b9f2e70bead1d90bdf5353cc](https://preprod.midnightexplorer.com/contracts/4c8d8bc1f4ebffa14661465644c523c994a1367bfd0e043a09eca46f96fb7d79) |
-### 🌓 Level 3 — First Quarter
-
-**Chosen Idea:** _Private Allowlist Access_ — prove membership without revealing identity.
-
-| Requirement                                                           |                   Status                   |
-| --------------------------------------------------------------------- | :----------------------------------------: |
-| Fully functional dApp that meaningfully uses Midnight's privacy model |               ✅ **Passed**                |
-| Minimum 3 tests passing                                               |  ✅ **Passed**   |
-| CI/CD pipeline running (workflow file + passing runs)                 |               ✅ **Passed**                |
-| Approved idea submitted from the provided idea list                   | ✅ **Passed** — _Private Allowlist Access_ |
-| Minimum 10 meaningful commits                                         |               ✅ **Passed**                |
-
 
 
 ### 1. Automated Test Suite Passing
@@ -145,57 +137,6 @@ Follow **kiyora** on X for product updates, Midnight development progress, priva
 ### 3. CI & CD Running 
 
 <img width="1878" height="727" alt="image" src="https://github.com/user-attachments/assets/f0b8f37a-6bfd-44e3-aeb7-3c2c055e902e" />
-
-
-### 4. Commit Over 30 meaningful commits   ✅ **Passed**  
-
-**Submission Checklist**
-
-- [x] Public GitHub repository with complete README
-- [x] Live demo link
-- [x] Screenshot: test output (3+ tests passing)
-- [x] CI/CD badge or workflow file with passing runs
-- [x] Demo video (1 minute) showing full functionality
-- [x] README "privacy model" section: what an observer can and cannot learn
-- [x] Product proposal (from the idea list) submitted for approval
-- [x] Minimum 10 meaningful commits
-
----
-
-### 🌒 Level 2 — Waxing Crescent
-
-| Requirement                                                           |                                                                                                  Status                                                                                                   |
-| --------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Lace wallet connect / disconnect implemented                          |                                                                      ✅ **Passed** — Browser DApp Connector API, Lace & 1AM support                                                                       |
-| Circuit called successfully from the frontend                         |                                                         ✅ **Passed** — `verify_access()` runs in local ZK prover, broadcast via contract wrapper                                                         |
-| An observable privacy behavior (something proven without being shown) |                                                ✅ **Passed** — Merkle membership + nullifier check proven locally without revealing the secret credential                                                 |
-| Contract deployed to Preprod with a verifiable address | [0x85c6d5ce4fec74c33a17d4307290bf7d05878637b9f2e70bead1d90bdf5353cc](https://preprod.midnightexplorer.com/contracts/4c8d8bc1f4ebffa14661465644c523c994a1367bfd0e043a09eca46f96fb7d79)|
-| Minimum 8 meaningful commits                                          |                                                                                               ✅ **Passed**                                                                                               |
-
-## 🎬 Demo-Video
-
-[Watch the kiyora Demo Video on Google Drive](https://drive.google.com/file/d/1cAb_dis5CkSjRz4XW3x5RSnGYpUv2BDh/view?usp=sharing)
-
-### What to Record (Under 2 Minutes)
-
-1. **Connect Lace wallet** — show the address appear on screen
-2. **Admin flow** — deploy a gate and enroll a credential hash
-3. **Navigate to Member Access page** — show the Public vs Private comparison
-4. **Click "Generate Proof"** — show the loading state during ZK proof generation
-5. **Show the on-chain result** — transaction hash and "Proved without revealing your input" label
-6. **Point out** that the raw secret credential was never shown in the UI or sent to the chain
-7. **Disconnect wallet** — show the UI reset to disconnected state
-
-**Submission Checklist**
-
-- [x] Public GitHub repository with README
-- [x] Live demo link (Vercel, Netlify, or similar)
-- [x] Deployed Preprod contract address 
-- [x] Demo video: wallet connect + a successful circuit call
-- [x] README documenting the privacy claim
-- [x] Minimum 8 meaningful commits
-
----
 
 
 
