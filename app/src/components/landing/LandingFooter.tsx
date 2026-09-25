@@ -15,6 +15,10 @@ export function LandingFooter() {
             <span>Kiyora</span>
           </Link>
           <p>Private access infrastructure built with Midnight and zero-knowledge proofs.</p>
+          <div className={styles.systemStatusPill}>
+            <span className={styles.statusDot} aria-hidden="true" />
+            <span>Midnight Preprod: Operational</span>
+          </div>
         </div>
         <div className={styles.footerColumn}>
           <h3>Product</h3>
