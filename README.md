@@ -12,8 +12,22 @@
 
   <h3>Privacy-First Zero-Knowledge Access Control on Midnight Network</h3>
   <p><i>Prove you're authorized — without revealing who you are.</i></p>
-
   
+## 🏆 Level 6 Verification & Submission Deliverables
+
+* **Live Preprod Demo:** https://kiyora-app.vercel.app/ *(Live Kiyora Application on Preprod)*
+* **GitHub Repository:** https://github.com/Shritii-Patel/Kiyora
+* **Demo Video:** [Watch the Kiyora MVP Demo](https://drive.google.com/file/d/1cAb_dis5CkSjRz4XW3x5RSnGYpUv2BDh/view?usp=sharing)
+* **Preprod Contract:** `0xa6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19`
+* **Contract Explorer:** [View Kiyora Contract on Preprod Explorer](https://explorer.1am.xyz/contract/a6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19)
+* **Preprod Users Registry:** [USERS.md](./USERS.md) *(Target: 70 Preprod users · Current: 70 entries)*
+* **Mandatory User Feedback Tracker:** [Official Feedback Responses Sheet](https://docs.google.com/spreadsheets/d/1w4VrdXyHe97cSr8v7JyBOvFp2nHmf2gRNNogB7RxByo/edit?usp=sharing) *(Mandatory Level 5 & 6 Format)*
+* **User Feedback Form:** [Kiyora Feedback Form](https://forms.gle/gjAijrpqCXcb2Z6m9)
+* **User Feedback & Changelog:** [FEEDBACK.md](./FEEDBACK.md)
+* **Project Documentation:** [README.md](./README.md)
+* **CI/CD Pipeline:** ✅ Passing
+* **Level 6 Status:** ✅ All required submission deliverables completed
+
 
 ## 🏆 Level 6 Verification & Submission Deliverables
 
