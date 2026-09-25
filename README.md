@@ -89,22 +89,68 @@
 | [midnight_level6_Nexora_plan.md](./midnight_level6_Nexora_plan.md) | Level 6 Nexora planning, requirements, implementation progress, and submission checklist |
 
 ---
-## Level 6 Users
-See [`LAUNCH_USERS.md`](./Documents/LAUNCH_USERS.md)
+## 👥 Level 6 — User Validation & Testing
 
-## Level 5 - User Validation & Iteration
-- **Target:** 50 Preprod users
-- **Current Verified:** 50 / 50
-- **User Directory:** See [`USERS.md`](./Documents/USERS.md) for full verified addresses.
-- **Feedback & Changes:** See [`Documents/FEEDBACK.md`](./Documents/FEEDBACK.md) for raw feedback logs, feedback themes, and applied code iterations.
+See [`USERS.md`](./USERS.md) for the collected Midnight Preprod tester wallet addresses and user-testing evidence.
 
-## Feedback & Iterations
-See [`docs/FEEDBACK.md`](./docs/FEEDBACK.md) for full details.
-Summary of top changes made from user feedback:
-* **Gas Onboarding:** Added a tDUST faucet banner to prevent zero-gas transaction failures for first-time Preprod testers.
-* **Prover Latency & UI Locking:** Implemented a frontend loading spinner and disabled button states during local ZK proof generation to prevent accidental double-clicking.
-* **Input Validation & Context:** Added client-side input validation for positive numbers to prevent circuit crashes, along with a visual tier legend (Bronze, Silver, Gold) for scoring context.
+* **Target:** 70 Midnight Preprod testers
+* **Collected:** 70 tester entries
+* **Wallets Tested:** Lace Wallet + 1AM Wallet
+* **Testing Status:** ✅ Complete
+* **Network:** Midnight Preprod
+* **Validation:** Wallet connection, credential flow, Zero-Knowledge proof generation, verification, revocation, and negative-path testing
 
+## 🧪 Level 5 & Level 6 — User Feedback & Iteration
+
+See [`FEEDBACK.md`](./FEEDBACK.md) for the complete user feedback report, testing methodology, feedback themes, and product improvements.
+
+See the [Kiyora Feedback Spreadsheet](https://docs.google.com/spreadsheets/d/1w4VrdXyHe97cSr8v7JyBOvFp2nHmf2gRNNogB7RxByo/edit?usp=sharing) for the collected tester responses.
+
+See the [Kiyora Feedback Form](https://forms.gle/gjAijrpqCXcb2Z6m9) used to collect tester feedback.
+
+### 🔄 Key Improvements From User Feedback
+
+* **⏱️ Prover Experience:** Added clearer loading and proving states during local Zero-Knowledge proof generation to prevent duplicate interactions and make the proving process easier to understand.
+
+* **💧 DUST Onboarding:** Improved Preprod onboarding guidance around DUST requirements and faucet access to reduce first-time transaction failures.
+
+* **👛 Wallet Onboarding:** Added clearer wallet and Midnight connector guidance for Lace and 1AM users, including troubleshooting for locked extensions and browser popup issues.
+
+* **🔐 Revocation & Negative Path:** Improved the revoked-credential experience so invalid authorization attempts are clearly rejected before unnecessary failed transactions are submitted.
+
+* **🔍 Verification Feedback:** Improved verification states and on-chain confirmation visibility so users can better understand when authorization has been successfully verified.
+
+* **🔗 Transaction & Explorer UX:** Added clearer access to transaction information and Preprod explorer resources for users who want to independently verify on-chain activity.
+
+* **📱 Responsive UX:** Refined responsive layouts and completion states based on tester observations across desktop and mobile environments.
+
+* **📚 Documentation:** Expanded onboarding and technical guidance around wallet setup, DUST requirements, Zero-Knowledge proving, credential revocation, and Preprod testing.
+
+## 📈 Validation Summary
+
+Kiyora's testing cycle was used as a continuous feedback loop:
+
+```text
+Preprod User Testing
+        ↓
+Wallet + Credential Flow
+        ↓
+ZK Proof Generation
+        ↓
+Authorization Verification
+        ↓
+Revocation / Negative Testing
+        ↓
+User Feedback
+        ↓
+Issue Identification
+        ↓
+UX & Product Improvements
+        ↓
+Retesting
+```
+
+The resulting feedback and implementation changes are documented in [`FEEDBACK.md`](./FEEDBACK.md), while the tester wallet evidence is maintained in [`USERS.md`](./USERS.md).
 
 
 ## 🌒 Moonshots Level 1 → 6 — Requirements & Submission Checklist
