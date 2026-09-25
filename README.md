@@ -1,7 +1,8 @@
 <div align="left">
 
 # Kiyora
-
+  **Live demo:** [kiyora](https://kiyora-app.vercel.app/)  |  **Official Product X Handle:** [@kiyoraWeb3](https://x.com/kiyoraWeb3/)
+   
 [![Kiyora CI](https://github.com/Shritii-Patel/Kiyora/actions/workflows/ci.yml/badge.svg)](https://github.com/Shritii-Patel/Kiyora/actions/workflows/ci.yml)
 [![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen)](./tests/)
 [![Compact](https://img.shields.io/badge/Compact-Midnight-blue)](https://docs.midnight.network/)
