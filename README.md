@@ -15,6 +15,49 @@
 
   
 
+## 🏆 Level 6 Verification & Submission Deliverables
+
+* 🌐 **Live Web Application:** https://kiyora-app.vercel.app/ *(Live Kiyora application deployed for Midnight Preprod testing)*
+
+* 💻 **Public GitHub Repository:** https://github.com/Shritii-Patel/Kiyora *(Complete open-source Kiyora implementation with updated documentation and source code)*
+
+* ⛓️ **Midnight Preprod Contract:** `0xa6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19`
+
+* 🔍 **Preprod Contract Explorer:** [View Kiyora on Midnight Preprod Explorer](https://explorer.1am.xyz/contract/a6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19) *(Publicly verifiable contract deployment)*
+
+* 📊 **Mandatory User Feedback Google Sheet:** [View Kiyora User Feedback Responses](https://docs.google.com/spreadsheets/d/1w4VrdXyHe97cSr8v7JyBOvFp2nHmf2gRNNogB7RxByo/edit?usp=sharing) *(User testing, feedback, wallet participation, and Level 6 evidence)*
+
+* 📝 **User Feedback Collection Form:** [Open Kiyora Feedback Form](https://forms.gle/gjAijrpqCXcb2Z6m9) *(Used to collect tester feedback, usability observations, issues, and improvement suggestions)*
+
+* 👥 **70 Verifiable Midnight Preprod User Entries:** `70 Midnight Preprod wallet entries` *(Documented tester participation and onboarding evidence)*
+
+* 💬 **Documented Feedback Loop:** `FEEDBACK.md` *(Documents tester feedback, identified friction points, product improvements, and development iterations)*
+
+* 📚 **Updated Project Documentation:** `README.md` *(Complete documentation covering Kiyora architecture, privacy model, setup, wallet integration, Zero-Knowledge verification flow, Preprod deployment, and usage instructions)*
+
+* 🎥 **Demo Video Walkthrough:** [Watch the Kiyora Demo Video on Google Drive](https://drive.google.com/file/d/1cAb_dis5CkSjRz4XW3x5RSnGYpUv2BDh/view?usp=sharing) *(Full end-to-end Kiyora application demonstration)*
+
+* 🔐 **Privacy-Preserving Verification:** Kiyora verifies authorized membership through a Zero-Knowledge Merkle membership proof without exposing the user's identity, raw credential, private witness, or sensitive membership data on-chain.
+
+* ♻️ **Nullifier Replay Protection:** Each successful authorization generates a single-use nullifier, preventing the same verification from being replayed.
+
+* 👛 **Multi-Wallet Support:** Lace and 1AM wallet integration for Midnight Preprod authentication and transaction signing.
+
+* 🌳 **Zero-Knowledge Merkle Membership:** Users prove that their credential belongs to the authorized membership set without revealing the underlying credential or complete membership structure.
+
+* 🛡️ **Privacy-First Access Control:** Kiyora replaces traditional wallet-based allowlists and token-gated access with privacy-preserving authorization based on Zero-Knowledge proofs.
+
+* ⚙️ **CI/CD Pipeline:** ✅ Configured and passing *(Automated build and verification workflow integrated into the public repository)*
+
+* 💻 **Commit History:** `Meaningful continuous development history` *(Demonstrates ongoing implementation, testing, fixes, refinement, and Level 6 iteration)*
+
+* 🧪 **End-to-End MVP Verification:** ✅ Complete *(Wallet connection → credential enrollment → local ZK proof generation → Midnight verification → nullifier validation → authorized access)*
+
+* 🚀 **Production-Ready Deployment:** ✅ Complete *(Live application deployed and connected to the Midnight Preprod environment)*
+
+### 🟢 Level 6 Status
+
+**All required Level 6 deliverables have been completed and documented for Kiyora. The project provides a publicly verifiable Midnight Preprod deployment, live application, public GitHub repository, tester participation, user feedback records, feedback collection form, documentation, demo video, privacy-preserving ZK verification, replay protection, multi-wallet support, CI/CD, and complete end-to-end verification evidence.**
 
 ---
 ## 📚 Documentation
@@ -99,7 +142,7 @@ Follow **kiyora** on X for product updates, Midnight development progress, priva
 | Network     | Address                                                              |
 | ----------- | -------------------------------------------------------------------- |
 | **🌐Live Demo** | [https://kiyora-app.vercel.app/](https://kiyora-app.vercel.app/) |
-| **Preprod** | `0x85c6d5ce4fec74c33a17d4307290bf7d05878637b9f2e70bead1d90bdf5353cc` |
+| **Preprod** | `0xa6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19` |
 | **Demo Video** |[Watch the kiyora Demo Video on Google Drive](https://drive.google.com/file/d/1cAb_dis5CkSjRz4XW3x5RSnGYpUv2BDh/view?usp=sharing) |
 | CI/CD pipeline running (workflow file + passing runs)                 |               ✅ **Passed**                |
 
@@ -110,16 +153,17 @@ Follow **kiyora** on X for product updates, Midnight development progress, priva
 
 | Resource | Link                                                                                                                                                                        |
 | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Explorer | [Midnight Preprod Explorer](https://preprod.midnightexplorer.com/contracts/85c6d5ce4fec74c33a17d4307290bf7d05878637b9f2e70bead1d90bdf5353cc)                                                                                                        |
-| Contract | [0x85c6d5ce4fec74c33a17d4307290bf7d05878637b9f2e70bead1d90bdf5353cc](https://preprod.midnightexplorer.com/contracts/4c8d8bc1f4ebffa14661465644c523c994a1367bfd0e043a09eca46f96fb7d79) |
+| Explorer | [Midnight Preprod Explorer](https://explorer.1am.xyz/contract/a6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19)                                                                                                        |
+| Contract | [0xa6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19](https://explorer.1am.xyz/contract/a6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19) |
 
 
 ### 1. Automated Test Suite Passing
 
 <img width="486" height="169" alt="Screenshot 2026-07-22 123954" src="https://github.com/user-attachments/assets/b71b9cdb-8fc5-46d3-9a80-b390b3c44db1" />
 
-### 2. Deployed on Prepod Network
-<img width="1815" height="911" alt="image" src="https://github.com/user-attachments/assets/0b105701-ff92-40b1-bdfa-ec4c75c5c06e" />
+### 2. Deployed on Prepod Network (Deploy on 25 Sep 2026 23:54)
+<img width="1838" height="917" alt="image" src="https://github.com/user-attachments/assets/e761ee14-7b25-44d5-bacd-ac74a70f0dbb" />
+
 
 
 
