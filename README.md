@@ -1,31 +1,20 @@
-<div align="center">
+<div align="left">
 
-  <h1 align="center">🔐 kiyora</h1>
+# Kiyora
+
+[![Kiyora CI](https://github.com/Shritii-Patel/Kiyora/actions/workflows/ci.yml/badge.svg)](https://github.com/Shritii-Patel/Kiyora/actions/workflows/ci.yml)
+[![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen)](./tests/)
+[![Compact](https://img.shields.io/badge/Compact-Midnight-blue)](https://docs.midnight.network/)
+[![Network](https://img.shields.io/badge/Network-Midnight%20Preprod-purple)](https://indexer.preprod.midnight.network/api/v4/graphql)
+[![Lace Wallet](https://img.shields.io/badge/Wallet-Lace-7B68EE)](https://www.lace.io/)
+[![1AM Wallet](https://img.shields.io/badge/Wallet-1AM-FF5733)](https://1amwallet.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
   <h3>Privacy-First Zero-Knowledge Access Control on Midnight Network</h3>
   <p><i>Prove you're authorized — without revealing who you are.</i></p>
 
-  <br />
-  <img src="https://img.shields.io/badge/Midnight_Network-000000?style=for-the-badge" alt="Midnight Network" />
-  <img src="https://img.shields.io/badge/Next.js_15-black?style=for-the-badge&logo=next.js" alt="Next.js" />
-  <img src="https://img.shields.io/badge/Lace_Wallet-7B68EE?style=for-the-badge" alt="Lace Wallet" />
-  <img src="https://img.shields.io/badge/1AM_Wallet-FF5733?style=for-the-badge" alt="1AM Wallet" />
-  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
+  
 
-<br />
-  <br />
-  <a href="https://github.com/Shritii-Patel/Kiyora/actions/runs/32346116973">
-    <img src="https://img.shields.io/badge/CI%2FCD-passing-brightgreen?style=for-the-badge" alt="CI/CD Pipeline Status" />
-  </a>
-</div>
-<br />
-<img width="1872" height="897" alt="image" src="https://github.com/user-attachments/assets/d98a7fa3-d0b9-4a64-8b8a-a2f6ca17f016" />
-
-<br />
-<br />
-
-> Confidential, production-grade Zero-Knowledge access control gateway built on the Midnight Network. kiyora lets users prove they are authorized to access a resource — without ever revealing their identity, wallet history, or the underlying credential.
-
-**kiyora** replaces traditional wallet-based allowlists and token-gated access with a Zero-Knowledge Merkle membership proof. Members prove they hold a valid, enrolled credential and generate a single-use nullifier locally in their browser — nothing sensitive ever touches the chain. Built for the **First Quarter (Level 3)** challenge as part of the **RiseIn & Midnight Foundation "New Moon to Full: Monthly Moonshots on Midnight" Program 2026**.
 
 ---
 ## 📚 Documentation
