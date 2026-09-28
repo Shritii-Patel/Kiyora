@@ -204,8 +204,8 @@ export function LandingPage() {
                       <Users size={17} />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[16px] font-semibold text-[#241d1a] leading-tight">156k+</span>
-                      <span className="text-[12px] text-[#7c716a]">Daily users</span>
+                      <span className="text-[16px] font-semibold text-[#241d1a] leading-tight">70+</span>
+                      <span className="text-[12px] text-[#7c716a]">Verified preprod users</span>
                     </div>
                   </div>
 
@@ -238,36 +238,6 @@ export function LandingPage() {
                   {/* 3D Metallic Emblem Asset (Smooth 360° Horizontal Rotation) */}
                   <div className="relative z-10 w-full flex items-center justify-center">
                     <RotatingEmblem />
-                  </div>
-
-                  {/* Floating Frosted Pill 1: Top Left */}
-                  <div className="absolute top-2 -left-2 sm:-left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(40,30,24,0.12)]">
-                    <div className="w-4 h-4 rounded-full bg-[#a35e38] flex items-center justify-center text-white shrink-0 shadow-xs">
-                      <Check size={10} strokeWidth={3} />
-                    </div>
-                    <span className="text-[13px] font-medium text-[#2d2420] tracking-tight">
-                      Zero-knowledge proof
-                    </span>
-                  </div>
-
-                  {/* Floating Frosted Pill 2: Middle Right */}
-                  <div className="absolute top-[48%] -right-2 sm:-right-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(40,30,24,0.12)]">
-                    <div className="w-4 h-4 rounded-full bg-[#a35e38] flex items-center justify-center text-white shrink-0 shadow-xs">
-                      <Check size={10} strokeWidth={3} />
-                    </div>
-                    <span className="text-[13px] font-medium text-[#2d2420] tracking-tight">
-                      Hardware privacy
-                    </span>
-                  </div>
-
-                  {/* Floating Frosted Pill 3: Bottom Left */}
-                  <div className="absolute bottom-4 left-1 sm:-left-3 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(40,30,24,0.12)]">
-                    <div className="w-4 h-4 rounded-full bg-[#006c48] flex items-center justify-center text-white shrink-0 shadow-xs">
-                      <Check size={10} strokeWidth={3} />
-                    </div>
-                    <span className="text-[13px] font-medium text-[#2d2420] tracking-tight">
-                      Instant verification
-                    </span>
                   </div>
                 </div>
               </div>
