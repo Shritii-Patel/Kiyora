@@ -1,678 +1,690 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
+  AlertTriangle,
   ArrowRight,
-  BadgeCheck,
-  Binary,
   Check,
-  CircuitBoard,
+  CheckCircle2,
   Cpu,
-  EyeOff,
-  Fingerprint,
+  Database,
+  ExternalLink,
   KeyRound,
-  LockKeyhole,
-  Network,
+  Lock,
+  Mail,
+  Shield,
   ShieldCheck,
   Sparkles,
-  WalletCards,
+  Star,
+  Users,
+  Verified,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { LandingFooter } from "./LandingFooter";
 import { LandingNavbar } from "./LandingNavbar";
-import styles from "./Landing.module.css";
 
-const heroVideo =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260613_180732_a54afbf6-b30d-470e-861f-669871f09f67.mp4";
+export function LandingPage() {
+  const [email, setEmail] = useState("");
+  const [selectedSchema, setSelectedSchema] = useState<string[]>(["income", "jurisdiction"]);
+  const [isProving, setIsProving] = useState(false);
+  const [proveProgress, setProveProgress] = useState(78);
 
-const technologies = [
-  { name: "Midnight", tag: "Privacy L1" },
-  { name: "Compact", tag: "ZK Language" },
-  { name: "Zero-Knowledge", tag: "SNARKs" },
-  { name: "Lace", tag: "DApp Wallet" },
-  { name: "1AM Wallet", tag: "Confidential Signer" },
-];
+  const toggleSchema = (id: string) => {
+    setSelectedSchema((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
 
-const howSteps = [
-  {
-    step: "01",
-    title: "Credential",
-    desc: "Private secret key held strictly in client memory",
-    tag: "SECRET_INPUT",
-    status: "CONFIDENTIAL",
-  },
-  {
-    step: "02",
-    title: "Local Hashing",
-    desc: "Deterministic Poseidon commitment derived locally",
-    tag: "POSEIDON_HASH",
-    status: "LOCAL_ONLY",
-  },
-  {
-    step: "03",
-    title: "Private Witness",
-    desc: "Compact circuit evaluates witness in user browser",
-    tag: "CLIENT_WITNESS",
-    status: "SEALED",
-  },
-  {
-    step: "04",
-    title: "ZK Proof",
-    desc: "Zero-Knowledge SNARK compiled without leaking input",
-    tag: "ZK_SNARK",
-    status: "MATHEMATICAL",
-  },
-  {
-    step: "05",
-    title: "Midnight",
-    desc: "Preprod ledger receives public proof & nullifier",
-    tag: "ON_CHAIN",
-    status: "VERIFIABLE",
-  },
-  {
-    step: "06",
-    title: "Access Verified",
-    desc: "Boolean gate unlocked without identity storage",
-    tag: "VERIFIED",
-    status: "COMPLETE",
-  },
-];
-
-const operatorSteps = [
-  { num: "01", name: "Configure", desc: "Define rules & access criteria", status: "RULESET" },
-  { num: "02", name: "Connect", desc: "Authorize Lace / 1AM Wallet", status: "WALLET" },
-  { num: "03", name: "Publish", desc: "Deploy confidential gate on Midnight", status: "CONTRACT" },
-  { num: "04", name: "Issue Credential", desc: "Enroll confidential member commitments", status: "ENROLLMENT" },
-];
-
-const memberSteps = [
-  { num: "01", name: "Open Gate", desc: "Access the protected portal", status: "GATEWAY" },
-  { num: "02", name: "Connect", desc: "Connect confidential wallet", status: "SIGNER" },
-  { num: "03", name: "Enter Credential", desc: "Provide secret locally in-memory", status: "LOCAL" },
-  { num: "04", name: "Generate Proof", desc: "Execute Compact circuit locally", status: "ZK_PROVE" },
-  { num: "05", name: "Access Granted", desc: "Verified on Midnight ledger", status: "CONFIRMED" },
-];
-
-const features = [
-  {
-    icon: LockKeyhole,
-    title: "Private Gates",
-    text: "Create access-controlled spaces without exposing member identity or wallet transaction history.",
-    tag: "ZERO_IDENTITY",
-  },
-  {
-    icon: KeyRound,
-    title: "Credential Enrollment",
-    text: "Issue and enroll cryptographic commitments while raw credentials remain strictly on the user machine.",
-    tag: "LOCAL_SEAL",
-  },
-  {
-    icon: Fingerprint,
-    title: "Zero-Knowledge Verification",
-    text: "Prove eligibility mathematically using Midnight Compact circuits without revealing private witness data.",
-    tag: "COMPACT_ZK",
-  },
-  {
-    icon: BadgeCheck,
-    title: "Replay Protection",
-    text: "Enforce cryptographic nullifiers to prevent proof reuse while preserving permanent member anonymity.",
-    tag: "NULLIFIERS",
-  },
-];
-
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className={styles.eyebrow}>
-      <span className={styles.eyebrowDot} aria-hidden="true" />
-      <span>{children}</span>
-    </p>
-  );
-}
-
-function CTAGroup({ className = "" }: { className?: string }) {
-  return (
-    <div className={`${styles.ctaGroup} ${className}`}>
-      <Link href="/gate" className={styles.primaryCta}>
-        <span>Launch Live Demo</span>
-        <i aria-hidden="true"><ArrowRight size={17} /></i>
-      </Link>
-      <Link href="/admin" className={styles.secondaryCta}>
-        Open Operator Console <ArrowRight size={15} aria-hidden="true" />
-      </Link>
-    </div>
-  );
-}
-
-function Hero() {
-  return (
-    <section className={styles.heroSection}>
-      <video className={styles.heroVideo} autoPlay muted loop playsInline preload="auto" aria-hidden="true">
-        <source src={heroVideo} type="video/mp4" />
-      </video>
-      <div className={styles.starField} aria-hidden="true" />
-      <div className={styles.heroShade} aria-hidden="true" />
-      <div className={styles.heroBlueHaze} aria-hidden="true" />
-      <div className={styles.heroNoise} aria-hidden="true" />
-
-      <div className={styles.heroInner}>
-        <div className={styles.heroCopy}>
-          <div className={styles.heroEyebrow}>Private Access on Midnight</div>
-          <h1 aria-label="Prove access. Reveal nothing.">
-            <span><b>Prove access.</b></span>
-            <span className={styles.gradientLine}><b>Reveal nothing.</b></span>
-          </h1>
-          <p>
-            Kiyora lets users prove they are authorized without revealing their identity
-            or exposing the credential behind the proof.
-          </p>
-          <p className={styles.heroSubline}>Private credentials. Verifiable access. Zero identity exposure.</p>
-          <CTAGroup className={styles.heroActions} />
-        </div>
-
-        <div className={styles.heroType} aria-hidden="true">
-          <span>PRIVATE</span>
-          <span>ACCESS</span>
-        </div>
-
-        <div className={styles.microProof} aria-label="Private credential to zero-knowledge proof to access verified">
-          <span>Private Credential</span>
-          <i aria-hidden="true" />
-          <span>Zero-Knowledge Proof</span>
-          <i aria-hidden="true" />
-          <span>Access Verified</span>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TechnologyStrip() {
-  return (
-    <section id="product" className={styles.techStrip} aria-label="Kiyora technology foundation">
-      <div className={styles.techStripScanLine} aria-hidden="true" />
-      <div className={styles.techStripInner}>
-        <div className={styles.techBeacon}>
-          <span className={styles.techBeaconDot} aria-hidden="true" />
-          <span>Privacy-First Infrastructure</span>
-        </div>
-        <div className={styles.techBadgesWrap}>
-          {technologies.map((tech) => (
-            <div key={tech.name} className={styles.techBadge}>
-              <span>{tech.name}</span>
-              <span className={styles.techBadgeSub}>{tech.tag}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProofVisualization({ activeIndex, onSelectStep }: { activeIndex: number; onSelectStep: (idx: number) => void }) {
-  return (
-    <div className={styles.proofVisual} role="img" aria-label="Credential transformed into a zero-knowledge proof on Midnight">
-      <div className={styles.proofGrid} aria-hidden="true" />
-      <svg viewBox="0 0 680 560" aria-hidden="true">
-        <defs>
-          <linearGradient id="proofTrace" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#ffffff" stopOpacity="0.08" />
-            <stop offset="0.5" stopColor="#29d9ff" stopOpacity="0.85" />
-            <stop offset="1" stopColor="#2f7bff" stopOpacity="0.22" />
-          </linearGradient>
-        </defs>
-        <path d="M100 94 C188 158 236 232 340 280 C450 330 494 398 586 468" className={styles.proofPathStatic} />
-        <path d="M120 438 C208 354 258 314 340 280 C436 240 488 166 566 96" className={styles.proofPathStatic} />
-        <path d="M340 70 L340 490" className={styles.proofPathStatic} />
-        <path d="M72 280 L608 280" className={styles.proofPathStatic} />
-        <circle cx="340" cy="280" r="78" className={styles.proofPathStatic} />
-        <circle cx="340" cy="280" r="132" className={styles.proofPathStatic} />
-
-        <path d="M100 94 C188 158 236 232 340 280 C450 330 494 398 586 468" className={styles.proofPathAnimated} />
-        <path d="M120 438 C208 354 258 314 340 280 C436 240 488 166 566 96" className={styles.proofPathAnimated} />
-        <path d="M340 70 L340 490" className={styles.proofPathPulse} />
-      </svg>
-
-      <div className={styles.proofCenter}>
-        <div className={styles.proofCenterRadar} aria-hidden="true" />
-        <div className={styles.proofCenterRadarOuter} aria-hidden="true" />
-        <CircuitBoard size={34} aria-hidden="true" />
-        <strong>ZK</strong>
-        <span>proof node</span>
-      </div>
-
-      {howSteps.map((step, index) => {
-        const isActive = activeIndex === index;
-        return (
-          <button
-            type="button"
-            key={step.title}
-            onClick={() => onSelectStep(index)}
-            className={`${styles.proofStep} ${styles[`proofStep${index + 1}` as keyof typeof styles]} ${isActive ? styles.proofStepActiveNode : ""}`}
-            aria-label={`Step ${step.step}: ${step.title}`}
-          >
-            <small>{step.step}</small>
-            <span>{step.title}</span>
-          </button>
-        );
-      })}
-
-      <div className={styles.hashLabel}>
-        <span>COMMITMENT:</span> {activeIndex >= 1 ? "0x8f2a...c391 (SEALED)" : "0x0000...0000"}
-      </div>
-      <div className={styles.witnessLabel}>
-        <span>LOCAL WITNESS:</span> {activeIndex >= 2 ? "COMPILED OK" : "STANDBY"}
-      </div>
-    </div>
-  );
-}
-
-function HowItWorks() {
-  const [activeStep, setActiveStep] = useState(0);
-  const autoCycleRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    autoCycleRef.current = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % howSteps.length);
-    }, 3800);
-    return () => {
-      if (autoCycleRef.current) clearInterval(autoCycleRef.current);
-    };
-  }, []);
-
-  const handleManualSelect = (idx: number) => {
-    setActiveStep(idx);
-    if (autoCycleRef.current) {
-      clearInterval(autoCycleRef.current);
-      autoCycleRef.current = null;
-    }
+  const handleSimulateProve = () => {
+    setIsProving(true);
+    setProveProgress(15);
+    const interval = setInterval(() => {
+      setProveProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          setIsProving(false);
+          return 100;
+        }
+        return prev + 17;
+      });
+    }, 120);
   };
 
   return (
-    <section id="how-it-works" className={styles.section}>
-      <div className={`${styles.sectionInner} ${styles.howGrid} ${styles.reveal}`}>
-        <div className={styles.sectionCopy}>
-          <Eyebrow>How Kiyora Works</Eyebrow>
-          <h2>
-            <span><b>Private access,</b></span>
-            <span className={styles.gradientText}><b>without identity exposure.</b></span>
-          </h2>
-          <p>
-            A member keeps credential material private, generates a proof locally,
-            and exposes only the minimum public state needed for verification.
-          </p>
+    <div className="w-full min-h-screen bg-[#fcfbfa] text-[#1b1c1c] antialiased selection:bg-[#7dfabe]/40 selection:text-[#002113]">
+      <LandingNavbar />
 
-          <div className={styles.stepNavigation}>
-            {howSteps.slice(0, 5).map((step, idx) => {
-              const isActive = activeStep === idx;
-              return (
-                <button
-                  type="button"
-                  key={step.title}
-                  onClick={() => handleManualSelect(idx)}
-                  className={`${styles.stepNavItem} ${isActive ? styles.stepNavItemActive : ""}`}
+      <main className="w-full pt-16 bg-[#fcfbfa]">
+        <div className="flex flex-col w-full">
+          {/* ============================================================== */}
+          {/* HERO SECTION - Warm studio gradient with titanium card photo  */}
+          {/* ============================================================== */}
+          <section
+            id="product"
+            className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-8 pb-8 sm:pb-10 lg:pt-12 lg:pb-12 px-4 sm:px-6 md:px-12 lg:px-16 overflow-hidden bg-gradient-to-b from-[#fbf8f5] via-[#f7f2ed] to-[#f5ede6] border-b border-[#e4dad0]"
+          >
+            {/* Soft warm diffused ambient glow */}
+            <div className="absolute top-1/4 right-[10%] w-[520px] h-[520px] rounded-full bg-gradient-to-br from-[#f2dfcf]/45 via-[#ecd4c2]/35 to-transparent blur-3xl pointer-events-none -z-0" />
+            <div className="absolute -bottom-10 left-10 w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-[#f3e5d8]/40 to-transparent blur-3xl pointer-events-none -z-0" />
+
+            {/* Faint watermark typography in background */}
+            <div
+              className="absolute -bottom-6 left-6 text-[130px] md:text-[220px] font-bold tracking-tighter text-[#1f1917]/[0.035] select-none pointer-events-none z-0 font-sans leading-none"
+              aria-hidden="true"
+            >
+              kiyora
+            </div>
+
+            {/* ============================================================== */}
+            {/* Soft dark cream blurry smoke effect extending flush to border   */}
+            {/* ============================================================== */}
+            <div className="absolute inset-x-0 bottom-0 h-[420px] sm:h-[480px] pointer-events-none overflow-hidden z-0">
+              {/* Wide ambient base smoke glow extending directly to the bottom border */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 100% 88% at 50% 100%, rgba(224, 182, 160, 0.72) 0%, rgba(234, 204, 188, 0.55) 45%, rgba(246, 228, 216, 0.28) 75%, transparent 100%)",
+                }}
+              />
+
+              {/* Billowing smoke cloud 1: Warm terracotta-cream mist under right hand/card */}
+              <div
+                className="absolute -bottom-8 right-[0%] sm:right-[10%] w-[720px] h-[380px] rounded-full blur-[80px] sm:blur-[100px] opacity-90"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(214, 170, 146, 0.8) 0%, rgba(232, 198, 178, 0.58) 55%, transparent 80%)",
+                }}
+              />
+
+              {/* Billowing smoke cloud 2: Soft dark cream mist under left stats and watermark */}
+              <div
+                className="absolute -bottom-10 left-[0%] sm:left-[4%] w-[680px] h-[360px] rounded-full blur-[75px] sm:blur-[95px] opacity-85"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(224, 184, 162, 0.78) 0%, rgba(238, 210, 194, 0.5) 60%, transparent 80%)",
+                }}
+              />
+
+              {/* Billowing smoke cloud 3: Deep warm peach-cream core smoke puff in center */}
+              <div
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[640px] h-[280px] rounded-full blur-[65px] sm:blur-[85px] opacity-80"
+                style={{
+                  background:
+                    "radial-gradient(ellipse, rgba(210, 164, 140, 0.7) 0%, rgba(230, 196, 176, 0.45) 65%, transparent 85%)",
+                }}
+              />
+
+              {/* Atmospheric horizontal drifting mist overlay right at the border line */}
+              <div
+                className="absolute bottom-0 inset-x-0 h-[260px] opacity-60 blur-[50px]"
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(235, 205, 190, 0.4) 0%, rgba(224, 188, 168, 0.65) 25%, rgba(212, 172, 148, 0.75) 50%, rgba(228, 198, 182, 0.65) 75%, rgba(235, 205, 190, 0.4) 100%)",
+                }}
+              />
+            </div>
+
+            <div className="relative z-10 max-w-[1240px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+              {/* Left Column: Copy, Capsule Pill, Input Bar, Trust Social Proof */}
+              <div className="lg:col-span-6 xl:col-span-7 flex flex-col items-start pr-0 lg:pr-6">
+                {/* Badge Pill */}
+                <div className="flex flex-wrap items-center gap-3 mb-6">
+                  <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f1e6dc]/80 border border-[#e5d4c5] text-[#6b584d] font-mono text-[12px] font-medium tracking-wide shadow-xs">
+                    <span className="w-2 h-2 rounded-full bg-[#006c48] animate-pulse" />
+                    Zero-Knowledge Verification
+                  </span>
+                </div>
+
+                {/* Reference styled Headline with inline interactive capsule badge */}
+                <h1 className="text-[44px] sm:text-[58px] md:text-[66px] lg:text-[72px] font-medium tracking-[-0.04em] text-[#241d1a] leading-[1.04] mb-6">
+                  The proof you
+                  <br className="hidden sm:inline" /> will trust
+                  {/* Inline Badge capsule matching Stitch reference */}
+                  <span className="inline-flex items-center align-middle ml-3 px-2.5 py-1.5 rounded-full bg-white/95 border border-[#e5dcd4] shadow-sm gap-1.5 -translate-y-1">
+                    <span className="w-6 h-6 rounded-full bg-[#2e2622] flex items-center justify-center text-white shadow-xs">
+                      <KeyRound size={13} />
+                    </span>
+                    <span className="w-6 h-6 rounded-full bg-[#eadecc] flex items-center justify-center text-[#5c4a3e]">
+                      <Shield size={13} />
+                    </span>
+                  </span>
+                </h1>
+
+                <p className="text-[17px] md:text-[19px] text-[#6e645e] leading-relaxed max-w-[520px] mb-8 font-normal">
+                  Zero-knowledge cryptographic cards and privacy verification. Prove claims instantly without
+                  exposing credentials.
+                </p>
+
+                {/* Email Signup / Instant Try Bar */}
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    window.location.href = `/admin?email=${encodeURIComponent(email)}`;
+                  }}
+                  className="w-full max-w-[460px] bg-white rounded-2xl p-1.5 sm:p-2 border border-[#e8dfd5] shadow-[0_6px_28px_rgba(46,38,34,0.06)] flex items-center gap-2 mb-10 focus-within:border-[#2e2622]/50 transition-all"
                 >
-                  <div className={styles.stepNavLeft}>
-                    <span className={styles.stepNavNum}>{step.step}</span>
-                    <div>
-                      <span className={styles.stepNavTitle}>{step.title}</span>
-                      <span className={styles.stepNavDesc}>{step.desc}</span>
+                  <div className="flex-1 flex items-center pl-3">
+                    <Mail size={18} className="text-[#a89b91] mr-2.5 shrink-0" />
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Your E-mail"
+                      className="w-full bg-transparent border-0 outline-none text-[#241d1a] placeholder-[#9c9188] text-[15px]"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="h-[44px] px-6 rounded-xl bg-[#2e2622] hover:bg-[#181311] text-white font-medium text-[14.5px] transition-all flex items-center justify-center shrink-0 shadow-xs active:scale-[0.98]"
+                  >
+                    Try Kiyora
+                  </button>
+                </form>
+
+                {/* Trust Metrics / Social Proof matching attached reference */}
+                <div className="flex items-center gap-6 sm:gap-8 pt-2">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-[#f1e7dd]/90 flex items-center justify-center text-[#55463c] shrink-0 border border-[#e5d7ca]/60 shadow-xs">
+                      <Users size={17} />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[16px] font-semibold text-[#241d1a] leading-tight">156k+</span>
+                      <span className="text-[12px] text-[#7c716a]">Daily users</span>
                     </div>
                   </div>
-                  <span className={styles.stepNavTag}>{step.status}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
 
-        <ProofVisualization activeIndex={activeStep} onSelectStep={handleManualSelect} />
-      </div>
-    </section>
-  );
-}
+                  <div className="h-7 w-[1px] bg-[#e4dad0]" />
 
-function Pipeline({
-  label,
-  badge,
-  steps,
-  icon: Icon,
-}: {
-  label: string;
-  badge: string;
-  steps: { num: string; name: string; desc: string; status: string }[];
-  icon: typeof Network;
-}) {
-  return (
-    <div className={styles.pipeline}>
-      <div className={styles.pipelineHeader}>
-        <div className={styles.pipelineHeaderTitle}>
-          <Icon size={18} strokeWidth={1.8} aria-hidden="true" />
-          <span>{label}</span>
-        </div>
-        <span className={styles.pipelineBadge}>{badge}</span>
-      </div>
-
-      <div className={styles.pipelineTrack}>
-        <div className={styles.pipelineLaser} aria-hidden="true" />
-        {steps.map((step) => (
-          <div key={step.name} className={styles.pipelineNode}>
-            <div className={styles.pipelineNodeBadge}>{step.num}</div>
-            <div className={styles.pipelineNodeText}>
-              <span className={styles.pipelineNodeName}>{step.name}</span>
-              <span className={styles.pipelineNodeDesc}>{step.desc}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function AccessFlow() {
-  return (
-    <section className={styles.section}>
-      <div className={`${styles.sectionInner} ${styles.reveal}`}>
-        <div className={styles.splitHeading}>
-          <div>
-            <Eyebrow>Operator + Member Flow</Eyebrow>
-            <h2>
-              <span><b>Two paths.</b></span>
-              <span className={styles.gradientText}><b>One private gate.</b></span>
-            </h2>
-          </div>
-          <p>
-            Operators publish the gate and credential rules. Members prove eligibility
-            without turning the gate into an identity collection point.
-          </p>
-        </div>
-
-        <div className={styles.flowPanel}>
-          <Pipeline label="Operator" badge="4 Stages" icon={Network} steps={operatorSteps} />
-          <Pipeline label="Member" badge="5 Stages" icon={WalletCards} steps={memberSteps} />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function PrivacyArchitecture() {
-  return (
-    <section id="privacy" className={`${styles.section} ${styles.privacySection}`}>
-      <div className={`${styles.sectionInner} ${styles.privacyGrid} ${styles.reveal}`}>
-        <div className={styles.architectureVisual} role="img" aria-label="Private side, zero-knowledge proof, and public side architecture">
-          <div className={styles.archColumn}>
-            <div className={styles.archHeader}>
-              <strong>Private Realm</strong>
-              <span className={styles.archHeaderPill}>Local Client</span>
-            </div>
-            <div className={styles.archCard}>
-              <div className={styles.archCardLeft}>
-                <KeyRound size={16} aria-hidden="true" />
-                <span>Raw Credential</span>
-              </div>
-              <span className={styles.archCardStatus}>LOCAL ONLY</span>
-            </div>
-            <div className={styles.archCard}>
-              <div className={styles.archCardLeft}>
-                <EyeOff size={16} aria-hidden="true" />
-                <span>Private Witness</span>
-              </div>
-              <span className={styles.archCardStatus}>SEALED</span>
-            </div>
-            <div className={styles.archCard}>
-              <div className={styles.archCardLeft}>
-                <Binary size={16} aria-hidden="true" />
-                <span>Secret Preimage</span>
-              </div>
-              <span className={styles.archCardStatus}>CONFIDENTIAL</span>
-            </div>
-          </div>
-
-          <div className={styles.archBridge}>
-            <div className={styles.archBridgeLine} aria-hidden="true" />
-            <div className={styles.archShield}>
-              <ShieldCheck size={30} aria-hidden="true" />
-              <span>Compact ZK Prover</span>
-            </div>
-            <div className={styles.archBridgeLine} aria-hidden="true" />
-          </div>
-
-          <div className={styles.archColumn}>
-            <div className={styles.archHeader}>
-              <strong>Public Realm</strong>
-              <span className={styles.archHeaderPill}>Midnight Ledger</span>
-            </div>
-            <div className={styles.archCard}>
-              <div className={styles.archCardLeft}>
-                <Cpu size={16} aria-hidden="true" />
-                <span>Allowlist Root</span>
-              </div>
-              <span className={styles.archCardStatus}>ON-CHAIN</span>
-            </div>
-            <div className={styles.archCard}>
-              <div className={styles.archCardLeft}>
-                <Fingerprint size={16} aria-hidden="true" />
-                <span>Unique Nullifier</span>
-              </div>
-              <span className={styles.archCardStatus}>REPLAY SAFE</span>
-            </div>
-            <div className={styles.archCard}>
-              <div className={styles.archCardLeft}>
-                <Check size={16} aria-hidden="true" />
-                <span>Verification State</span>
-              </div>
-              <span className={styles.archCardStatus}>VERIFIED</span>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.sectionCopy}>
-          <Eyebrow>Privacy Architecture</Eyebrow>
-          <h2>
-            <span><b>Privacy is part of</b></span>
-            <span className={styles.gradientText}><b>the architecture.</b></span>
-          </h2>
-          <p>
-            Raw credentials never go on-chain. Kiyora separates private witness data
-            from public verification state, so applications can verify access without
-            collecting unnecessary identity data.
-          </p>
-
-          <div className={styles.archNotes}>
-            <div className={styles.archNoteItem}>
-              <Check size={16} aria-hidden="true" />
-              <span>Private credential material stays in browser memory only</span>
-            </div>
-            <div className={styles.archNoteItem}>
-              <Check size={16} aria-hidden="true" />
-              <span>Only mathematical proof & single-use nullifier are verified on Midnight</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Features() {
-  return (
-    <section className={styles.section}>
-      <div className={`${styles.sectionInner} ${styles.reveal}`}>
-        <div className={styles.splitHeading}>
-          <div>
-            <Eyebrow>Core Product Features</Eyebrow>
-            <h2>
-              <span><b>Everything needed for</b></span>
-              <span className={styles.gradientText}><b>verifiable private access.</b></span>
-            </h2>
-          </div>
-          <p>
-            Focused cryptographic primitives for credential enrollment, gated access,
-            local proof generation, and replay-resistant verification.
-          </p>
-        </div>
-
-        <div className={styles.featureGrid}>
-          {features.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <article key={feature.title} className={styles.featureModule}>
-                <div className={styles.featureTop}>
-                  <div className={styles.featureIconWrap}>
-                    <Icon size={22} strokeWidth={1.7} aria-hidden="true" />
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-[#f1e7dd]/90 flex items-center justify-center text-[#55463c] shrink-0 border border-[#e5d7ca]/60 shadow-xs">
+                      <Star size={17} className="fill-[#55463c]" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[16px] font-semibold text-[#241d1a] leading-tight">4.8+</span>
+                      <span className="text-[12px] text-[#7c716a]">Ratings on TP</span>
+                    </div>
                   </div>
-                  <span className={styles.featureBadge}>{feature.tag}</span>
                 </div>
-                <h3>{feature.title}</h3>
-                <p>{feature.text}</p>
-                <div className={styles.featureTrace} aria-hidden="true" />
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
+              </div>
 
-function WhyMidnight() {
-  return (
-    <section id="technology" className={`${styles.section} ${styles.midnightSection}`}>
-      <div className={`${styles.sectionInner} ${styles.midnightGrid} ${styles.reveal}`}>
-        <div className={styles.sectionCopy}>
-          <Eyebrow>Why Midnight</Eyebrow>
-          <h2>
-            <span><b>Built for privacy.</b></span>
-            <span className={styles.gradientText}><b>Verified on-chain.</b></span>
-          </h2>
-          <p>
-            Kiyora uses Midnight&apos;s dual-state architecture to separate private
-            witness data from public verification state.
-          </p>
+              {/* Right Column: Card photograph in warm lighting with floating frosted pill labels */}
+              <div className="lg:col-span-6 xl:col-span-5 relative flex items-center justify-center lg:justify-end mt-4 lg:mt-0">
+                <div className="relative w-full max-w-[390px] md:max-w-[430px]">
+                  {/* Card Image Container with titanium smart card */}
+                  <div className="relative rounded-3xl overflow-hidden shadow-[0_28px_60px_-15px_rgba(50,38,30,0.22)] border border-[#ebdcd0]/80 bg-gradient-to-b from-[#eadecc]/30 to-transparent">
+                    <Image
+                      src="/stitch/card-titanium.png"
+                      alt="Kiyora Cryptographic Titanium Physical Smart Card held in hand"
+                      width={896}
+                      height={1200}
+                      priority
+                      className="w-full h-auto object-cover block transform transition-transform duration-700 hover:scale-[1.02]"
+                    />
+                  </div>
 
-          <div className={styles.techTags}>
-            <span className={styles.techTagPill}>Midnight Preprod</span>
-            <span className={styles.techTagPill}>Compact Circuit</span>
-            <span className={styles.techTagPill}>Zero-Knowledge SNARK</span>
-            <span className={styles.techTagPill}>Confidential Computing</span>
-          </div>
-        </div>
+                  {/* Floating Frosted Pill 1: Top Left */}
+                  <div className="absolute -top-3 left-2 sm:-left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(40,30,24,0.1)]">
+                    <div className="w-4 h-4 rounded-full bg-[#a35e38] flex items-center justify-center text-white shrink-0 shadow-xs">
+                      <Check size={10} strokeWidth={3} />
+                    </div>
+                    <span className="text-[13px] font-medium text-[#2d2420] tracking-tight">
+                      Zero-knowledge proof
+                    </span>
+                  </div>
 
-        <div className={styles.midnightDiagram} role="img" aria-label="Private state to ZK circuit to public verification">
-          <div className={styles.diagramNode}>
-            <small>01</small>
-            <div>
-              <strong>Private State</strong>
-              <span>Credential witness stays within browser memory</span>
+                  {/* Floating Frosted Pill 2: Middle Right */}
+                  <div className="absolute top-[42%] -right-2 sm:-right-8 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(40,30,24,0.1)]">
+                    <div className="w-4 h-4 rounded-full bg-[#a35e38] flex items-center justify-center text-white shrink-0 shadow-xs">
+                      <Check size={10} strokeWidth={3} />
+                    </div>
+                    <span className="text-[13px] font-medium text-[#2d2420] tracking-tight">
+                      Hardware privacy
+                    </span>
+                  </div>
+
+                  {/* Floating Frosted Pill 3: Bottom Left */}
+                  <div className="absolute bottom-12 -left-2 sm:-left-5 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(40,30,24,0.1)]">
+                    <div className="w-4 h-4 rounded-full bg-[#006c48] flex items-center justify-center text-white shrink-0 shadow-xs">
+                      <Check size={10} strokeWidth={3} />
+                    </div>
+                    <span className="text-[13px] font-medium text-[#2d2420] tracking-tight">
+                      Instant verification
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </section>
 
-          <div className={styles.diagramArrow} aria-hidden="true" />
+          {/* ============================================================== */}
+          {/* SECTION: THE PROBLEM (Side-by-Side Comparison)                */}
+          {/* ============================================================== */}
+          <section
+            id="privacy"
+            className="w-full py-20 px-4 sm:px-6 md:px-12 lg:px-16 bg-[#fbf9f8] border-b border-[#e9e8e7]"
+          >
+            <div className="max-w-[1240px] mx-auto">
+              <div className="mb-12">
+                <span className="font-mono text-[12px] text-[#5f5e5e] tracking-wider uppercase mb-2 block font-semibold">
+                  THE PROBLEM
+                </span>
+                <h2 className="text-[32px] md:text-[38px] font-semibold text-[#1b1c1c] tracking-tight">
+                  Verification shouldn&apos;t require full disclosure.
+                </h2>
+              </div>
 
-          <div className={`${styles.diagramNode} ${styles.circuitNodeHighlight}`}>
-            <small>02</small>
-            <div>
-              <strong>ZK Circuit</strong>
-              <span>Compact rules compiled into zero-knowledge proof</span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                {/* Traditional Over-Exposure Card */}
+                <div className="bg-white border border-[#e4e2e2] rounded-2xl p-6 md:p-8 flex flex-col justify-between shadow-xs">
+                  <div>
+                    <div className="flex items-center justify-between pb-3 border-b border-[#f0eae3] mb-4">
+                      <span className="text-[18px] font-semibold text-[#1b1c1c]">Traditional Verification</span>
+                      <span className="font-mono text-[12px] text-[#ba1a1a] font-medium px-2.5 py-0.5 bg-[#ffdad6]/60 rounded-md">
+                        Over-Exposed
+                      </span>
+                    </div>
+
+                    <p className="text-[14px] text-[#5f5e5e] mb-5">
+                      Current systems require sending raw database rows or identity document scans over the wire.
+                    </p>
+
+                    <div className="bg-[#f5f3f3] rounded-xl p-4 space-y-2.5 font-mono text-[13px] border border-[#e4e2e2]/70 mb-6">
+                      <div className="flex justify-between py-1 border-b border-[#e4e2e2]/40">
+                        <span className="text-[#5f5e5e]">Full Name</span>
+                        <span className="text-[#1b1c1c] font-medium">John Doe</span>
+                      </div>
+                      <div className="flex justify-between py-1 border-b border-[#e4e2e2]/40">
+                        <span className="text-[#5f5e5e]">Age</span>
+                        <span className="text-[#1b1c1c] font-medium">24</span>
+                      </div>
+                      <div className="flex justify-between py-1 border-b border-[#e4e2e2]/40">
+                        <span className="text-[#5f5e5e]">Annual Income</span>
+                        <span className="text-[#1b1c1c] font-medium">$80,000</span>
+                      </div>
+                      <div className="flex justify-between py-1 border-b border-[#e4e2e2]/40">
+                        <span className="text-[#5f5e5e]">Home Address</span>
+                        <span className="text-[#1b1c1c] font-medium truncate max-w-[180px]">
+                          742 Evergreen Terr
+                        </span>
+                      </div>
+                      <div className="flex justify-between py-1">
+                        <span className="text-[#5f5e5e]">National ID</span>
+                        <span className="text-[#1b1c1c] font-medium">981-22-4829</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 py-2.5 px-3.5 rounded-xl bg-[#fff0ee] border border-[#ffdad6] text-[#ba1a1a] font-mono text-[12px]">
+                    <AlertTriangle size={16} className="shrink-0 text-[#ba1a1a]" />
+                    <span>Verifier receives full raw personal data. Centralized breach risk.</span>
+                  </div>
+                </div>
+
+                {/* Kiyora Masked Zero-Knowledge Card */}
+                <div className="bg-white border-2 border-[#19a974]/40 rounded-2xl p-6 md:p-8 flex flex-col justify-between shadow-xs relative ring-1 ring-[#19a974]/20">
+                  <div>
+                    <div className="flex items-center justify-between pb-3 border-b border-[#f0eae3] mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[18px] font-semibold text-[#1b1c1c]">Kiyora Verification</span>
+                      </div>
+                      <span className="font-mono text-[12px] text-[#006c48] font-medium px-2.5 py-0.5 bg-[#96f6c2]/35 rounded-md border border-[#19a974]/30">
+                        Zero Knowledge
+                      </span>
+                    </div>
+
+                    <p className="text-[14px] text-[#5f5e5e] mb-5">
+                      Sensitive identifiers stay completely client-side. Only mathematical truth assertions are published.
+                    </p>
+
+                    <div className="bg-[#f5f3f3] rounded-xl p-4 space-y-2.5 font-mono text-[13px] border border-[#e4e2e2]/70 mb-6">
+                      <div className="flex justify-between py-1 border-b border-[#e4e2e2]/40 items-center">
+                        <span className="text-[#5f5e5e]">Full Name</span>
+                        <span className="bg-[#1b1c1c]/15 rounded-md h-3.5 w-28" />
+                      </div>
+                      <div className="flex justify-between py-1 border-b border-[#e4e2e2]/40 items-center">
+                        <span className="text-[#5f5e5e]">Age</span>
+                        <span className="bg-[#1b1c1c]/15 rounded-md h-3.5 w-16" />
+                      </div>
+                      <div className="flex justify-between py-1 border-b border-[#e4e2e2]/40 items-center">
+                        <span className="text-[#5f5e5e]">Annual Income</span>
+                        <span className="bg-[#1b1c1c]/15 rounded-md h-3.5 w-24" />
+                      </div>
+                      <div className="flex justify-between py-1 border-b border-[#e4e2e2]/40 items-center">
+                        <span className="text-[#5f5e5e]">Home Address</span>
+                        <span className="bg-[#1b1c1c]/15 rounded-md h-3.5 w-36" />
+                      </div>
+                      <div className="flex justify-between py-1 items-center">
+                        <span className="text-[#5f5e5e]">National ID</span>
+                        <span className="bg-[#1b1c1c]/15 rounded-md h-3.5 w-32" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2.5">
+                    <div className="flex items-center justify-between px-3.5 py-2 bg-[#fbf9f8] rounded-xl border border-[#e4e2e2]">
+                      <span className="font-mono text-[12px] text-[#5f5e5e]">Proof Assertion:</span>
+                      <span className="font-mono text-[12px] text-[#006c48] font-semibold flex items-center gap-1.5">
+                        <CheckCircle2 size={15} />
+                        Requirement satisfied
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2.5 py-2.5 px-3.5 rounded-xl bg-[#eef8f3] border border-[#a3dfbe]/50 text-[#006c48] font-mono text-[12px]">
+                      <Verified size={16} className="shrink-0 text-[#006c48]" />
+                      <span>Only the required claim is mathematically proven. Sensitive data never leaves your environment.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </section>
 
-          <div className={styles.diagramArrow} aria-hidden="true" />
+          {/* ============================================================== */}
+          {/* SECTION: HOW IT WORKS (Three Steps, One Private Verification)  */}
+          {/* ============================================================== */}
+          <section id="how-it-works" className="w-full py-20 px-4 sm:px-6 md:px-12 lg:px-16 bg-[#fcfbfa]">
+            <div className="max-w-[1240px] mx-auto">
+              <div className="mb-12">
+                <span className="font-mono text-[12px] text-[#5f5e5e] tracking-wider uppercase mb-2 block font-semibold">
+                  HOW IT WORKS
+                </span>
+                <h2 className="text-[32px] md:text-[38px] font-semibold text-[#1b1c1c] tracking-tight">
+                  Three steps. One private verification.
+                </h2>
+              </div>
 
-          <div className={styles.diagramNode}>
-            <small>03</small>
-            <div>
-              <strong>Public Ledger</strong>
-              <span>Nullifier & verification status recorded on Midnight</span>
+              {/* Step Timeline Grid */}
+              <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Connecting Line for Desktop */}
+                <div className="hidden md:block absolute top-[28px] left-[15%] right-[15%] h-[1px] bg-[#e4e2e2] z-0" />
+
+                {/* Step 01: Select */}
+                <div className="relative z-10 flex flex-col">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-[#e4e2e2] flex items-center justify-center font-mono text-[14px] font-semibold text-[#1b1c1c] shadow-xs">
+                      01
+                    </div>
+                    <h3 className="text-[19px] font-semibold text-[#1b1c1c]">Select</h3>
+                  </div>
+
+                  <p className="text-[14px] text-[#5f5e5e] mb-6 leading-relaxed">
+                    Choose the credential requirement that needs to be verified without revealing peripheral attributes.
+                  </p>
+
+                  <div className="bg-white border border-[#e4e2e2] rounded-2xl p-4 shadow-xs flex-1">
+                    <div className="text-[11px] font-mono uppercase tracking-wider text-[#5f5e5e] mb-3 font-semibold">
+                      Target Schema
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        onClick={() => toggleSchema("income")}
+                        className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#f5f3f3] border border-[#e4e2e2]/60 cursor-pointer hover:bg-[#efece9] transition-colors"
+                      >
+                        <span
+                          className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${
+                            selectedSchema.includes("income")
+                              ? "bg-[#1b1c1c] text-white"
+                              : "border border-[#a89b91] bg-white"
+                          }`}
+                        >
+                          {selectedSchema.includes("income") && <Check size={11} strokeWidth={3} />}
+                        </span>
+                        <span className="font-mono text-[12px] text-[#1b1c1c] font-medium">
+                          Income &gt;= $75,000
+                        </span>
+                      </label>
+
+                      <label
+                        onClick={() => toggleSchema("jurisdiction")}
+                        className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#f5f3f3] border border-[#e4e2e2]/60 cursor-pointer hover:bg-[#efece9] transition-colors"
+                      >
+                        <span
+                          className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${
+                            selectedSchema.includes("jurisdiction")
+                              ? "bg-[#1b1c1c] text-white"
+                              : "border border-[#a89b91] bg-white"
+                          }`}
+                        >
+                          {selectedSchema.includes("jurisdiction") && <Check size={11} strokeWidth={3} />}
+                        </span>
+                        <span className="font-mono text-[12px] text-[#1b1c1c] font-medium">
+                          Compliant Jurisdiction
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 02: Prove */}
+                <div className="relative z-10 flex flex-col">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-[#e4e2e2] flex items-center justify-center font-mono text-[14px] font-semibold text-[#1b1c1c] shadow-xs">
+                      02
+                    </div>
+                    <h3 className="text-[19px] font-semibold text-[#1b1c1c]">Prove</h3>
+                  </div>
+
+                  <p className="text-[14px] text-[#5f5e5e] mb-6 leading-relaxed">
+                    Generate a zero-knowledge proof locally inside your client runtime without exposing underlying identity details.
+                  </p>
+
+                  <div className="bg-white border border-[#e4e2e2] rounded-2xl p-4 shadow-xs flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-[#5f5e5e] font-semibold">
+                          Client Cryptographic Execution
+                        </span>
+                        <button
+                          type="button"
+                          onClick={handleSimulateProve}
+                          disabled={isProving}
+                          className="text-[11px] font-mono text-[#006c48] hover:underline"
+                        >
+                          {isProving ? "Computing..." : "Run Circuit"}
+                        </button>
+                      </div>
+
+                      <div className="bg-[#f5f3f3] rounded-xl p-3 font-mono text-[12px] text-[#5f5e5e] space-y-1.5 border border-[#e4e2e2]/60">
+                        <div className="text-[#1b1c1c] font-medium flex items-center justify-between">
+                          <span>Generating ZK-SNARK circuit...</span>
+                          <span className="text-[11px] text-[#006c48] font-bold">{proveProgress}%</span>
+                        </div>
+                        <div className="w-full bg-[#e4e2e2] rounded-full h-1.5 overflow-hidden my-2">
+                          <div
+                            className="bg-[#19a974] h-full transition-all duration-200"
+                            style={{ width: `${proveProgress}%` }}
+                          />
+                        </div>
+                        <div className="flex justify-between items-center text-[10px] text-[#5f5e5e]">
+                          <span>Proof ready:</span>
+                          <span className="text-[#1b1c1c] font-mono font-medium">0x7A82...92F</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 03: Verify */}
+                <div className="relative z-10 flex flex-col">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-[#e4e2e2] flex items-center justify-center font-mono text-[14px] font-semibold text-[#1b1c1c] shadow-xs">
+                      03
+                    </div>
+                    <h3 className="text-[19px] font-semibold text-[#1b1c1c]">Verify</h3>
+                  </div>
+
+                  <p className="text-[14px] text-[#5f5e5e] mb-6 leading-relaxed">
+                    The verifier validates the cryptographic proof against consensus and receives only the verified boolean claim.
+                  </p>
+
+                  <div className="bg-white border border-[#e4e2e2] rounded-2xl p-4 shadow-xs flex-1 flex flex-col justify-between">
+                    <div className="text-[11px] font-mono uppercase tracking-wider text-[#5f5e5e] mb-3 font-semibold">
+                      Consensus Output
+                    </div>
+                    <div className="bg-[#96f6c2]/20 border border-[#19a974]/30 rounded-xl p-3.5 flex items-center gap-3">
+                      <CheckCircle2 size={22} className="text-[#006c48] shrink-0" />
+                      <div>
+                        <span className="font-mono text-[13px] text-[#006c48] font-semibold block">
+                          Valid Proof
+                        </span>
+                        <span className="text-[12px] text-[#006c48]/90">
+                          Claim Satisfied · 100% Cryptographic Guarantee
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </section>
+
+          {/* ============================================================== */}
+          {/* SECTION: INFRASTRUCTURE (Midnight Architecture Pipeline)       */}
+          {/* ============================================================== */}
+          <section
+            id="infrastructure"
+            className="w-full py-20 px-4 sm:px-6 md:px-12 lg:px-16 bg-[#f5f3f3]/60 border-t border-[#e9e8e7]"
+          >
+            <div className="max-w-[1240px] mx-auto">
+              <div className="mb-10">
+                <span className="font-mono text-[12px] text-[#5f5e5e] tracking-wider uppercase mb-2 block font-semibold">
+                  INFRASTRUCTURE
+                </span>
+                <h2 className="text-[30px] md:text-[34px] font-semibold text-[#1b1c1c] tracking-tight mb-3">
+                  Built for private computation.
+                </h2>
+                <p className="text-[16px] text-[#5f5e5e] leading-relaxed max-w-xl">
+                  Kiyora is built on Midnight to enable privacy-preserving verification while keeping unnecessary information out of the verification flow.
+                </p>
+              </div>
+
+              {/* Architecture Pipeline 4-layer cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+                {/* Node 1 */}
+                <div className="bg-white border border-[#e4e2e2] rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                  <div>
+                    <div className="font-mono text-[11px] text-[#5f5e5e] uppercase tracking-wider mb-2 font-semibold">
+                      Layer 01
+                    </div>
+                    <div className="text-[17px] font-semibold text-[#1b1c1c] mb-1.5">Kiyora SDK</div>
+                    <p className="text-[13px] text-[#5f5e5e] mb-4">Client application &amp; schema integration layer.</p>
+                  </div>
+                  <div>
+                    <span className="inline-block font-mono text-[11px] text-[#5f5e5e] bg-[#f5f3f3] px-2.5 py-1 rounded-md border border-[#e4e2e2]/70">
+                      Browser / Edge
+                    </span>
+                  </div>
+                </div>
+
+                {/* Node 2 */}
+                <div className="bg-white border border-[#e4e2e2] rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                  <div>
+                    <div className="font-mono text-[11px] text-[#5f5e5e] uppercase tracking-wider mb-2 font-semibold">
+                      Layer 02
+                    </div>
+                    <div className="text-[17px] font-semibold text-[#1b1c1c] mb-1.5">ZK Proof Generation</div>
+                    <p className="text-[13px] text-[#5f5e5e] mb-4">
+                      Client-side execution generating succinct zk-SNARKs.
+                    </p>
+                  </div>
+                  <div>
+                    <span className="inline-block font-mono text-[11px] text-[#5f5e5e] bg-[#f5f3f3] px-2.5 py-1 rounded-md border border-[#e4e2e2]/70">
+                      Zero-Knowledge Circuit
+                    </span>
+                  </div>
+                </div>
+
+                {/* Node 3 (Midnight Core) */}
+                <div className="bg-white border border-[#19a974]/40 rounded-2xl p-5 shadow-xs relative flex flex-col justify-between ring-1 ring-[#19a974]/20">
+                  <div>
+                    <div className="font-mono text-[11px] text-[#006c48] uppercase tracking-wider mb-2 font-semibold">
+                      Layer 03
+                    </div>
+                    <div className="text-[17px] font-semibold text-[#1b1c1c] mb-1.5">Midnight Blockchain</div>
+                    <p className="text-[13px] text-[#5f5e5e] mb-4">
+                      Private smart contract execution &amp; distributed state verification.
+                    </p>
+                  </div>
+                  <div>
+                    <span className="inline-block font-mono text-[11px] text-[#006c48] bg-[#96f6c2]/35 px-2.5 py-1 rounded-md border border-[#19a974]/30">
+                      Consensus Engine
+                    </span>
+                  </div>
+                </div>
+
+                {/* Node 4 */}
+                <div className="bg-white border border-[#e4e2e2] rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                  <div>
+                    <div className="font-mono text-[11px] text-[#5f5e5e] uppercase tracking-wider mb-2 font-semibold">
+                      Layer 04
+                    </div>
+                    <div className="text-[17px] font-semibold text-[#1b1c1c] mb-1.5">Verified Claim</div>
+                    <p className="text-[13px] text-[#5f5e5e] mb-4">Boolean proof result received by relying party.</p>
+                  </div>
+                  <div>
+                    <span className="inline-block font-mono text-[11px] text-[#006c48] bg-[#96f6c2]/35 px-2.5 py-1 rounded-md border border-[#19a974]/30">
+                      Satisfied Claim Only
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ============================================================== */}
+          {/* SECTION: PRIVACY PRINCIPLE (Editorial Statement Block)         */}
+          {/* ============================================================== */}
+          <section className="w-full py-28 px-4 sm:px-6 md:px-12 lg:px-16 bg-[#fcfbfa]">
+            <div className="max-w-[1000px] mx-auto text-center flex flex-col items-center">
+              <span className="font-mono text-[12px] text-[#5f5e5e] tracking-widest uppercase mb-6 font-semibold">
+                CORE PHILOSOPHY
+              </span>
+              <h2 className="text-[36px] md:text-[48px] lg:text-[54px] font-semibold tracking-[-0.035em] text-[#1b1c1c] max-w-3xl leading-[1.1] mb-8">
+                The verifier learns the result. Not everything behind it.
+              </h2>
+              <p className="text-[18px] md:text-[20px] text-[#5f5e5e] max-w-2xl leading-relaxed">
+                Kiyora is designed around selective disclosure — prove the requirement while keeping the underlying credential private.
+              </p>
+            </div>
+          </section>
+
+          {/* ============================================================== */}
+          {/* SECTION: FINAL CTA                                             */}
+          {/* ============================================================== */}
+          <section className="w-full pb-24 px-4 sm:px-6 md:px-12 lg:px-16 bg-[#fcfbfa]">
+            <div className="max-w-[840px] mx-auto bg-white border border-[#e4e2e2] rounded-3xl p-10 md:p-14 text-center shadow-sm">
+              <h2 className="text-[30px] md:text-[36px] font-semibold text-[#1b1c1c] mb-3 tracking-tight">
+                Start verifying privately.
+              </h2>
+              <p className="text-[16px] text-[#5f5e5e] mb-8 max-w-md mx-auto">
+                Experience Kiyora&apos;s privacy-preserving verification flow built on zero-knowledge architecture.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-3.5">
+                <Link
+                  href="/admin"
+                  className="h-[42px] inline-flex items-center gap-2 px-6 rounded-xl bg-[#2e2622] hover:bg-[#181311] text-white font-medium text-[14px] transition-colors shadow-xs active:scale-[0.98]"
+                >
+                  <span>Try Kiyora</span>
+                  <ArrowRight size={15} />
+                </Link>
+
+                <a
+                  href="https://github.com/Shritii-Patel/Kiyora"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="h-[42px] inline-flex items-center px-6 rounded-xl bg-white border border-[#e4e2e2] text-[#1b1c1c] font-medium text-[14px] hover:bg-[#f6f4f2] transition-colors shadow-xs"
+                >
+                  View GitHub
+                </a>
+              </div>
+            </div>
+          </section>
         </div>
-      </div>
-    </section>
-  );
-}
-
-function Statement() {
-  return (
-    <section className={styles.statementSection}>
-      <div className={`${styles.statementInner} ${styles.reveal}`}>
-        <blockquote>
-          &ldquo;Access should prove <span className={styles.gradientText}>eligibility</span> &mdash; not expose <span className={styles.gradientText}>identity</span>.&rdquo;
-        </blockquote>
-        <p>
-          Kiyora separates identity from eligibility so applications can verify access
-          without collecting unnecessary personal information.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-function FinalCTA() {
-  return (
-    <section className={styles.finalSection}>
-      <div className={styles.finalHorizon} aria-hidden="true" />
-      <div className={`${styles.finalInner} ${styles.reveal}`}>
-        <Eyebrow>Launch Kiyora</Eyebrow>
-        <h2>
-          <span><b>Ready to create</b></span>
-          <span className={styles.gradientText}><b>private access?</b></span>
-        </h2>
-        <p>Create a gate, issue credentials, and let members verify access privately on Midnight.</p>
-        <CTAGroup />
-
-        <div className={styles.finalAssurance}>
-          <div className={styles.finalAssuranceItem}>
-            <Sparkles size={14} aria-hidden="true" />
-            <span>Midnight Preprod Ready</span>
-          </div>
-          <div className={styles.finalAssuranceItem}>
-            <ShieldCheck size={14} aria-hidden="true" />
-            <span>100% Client-Side ZK</span>
-          </div>
-          <div className={styles.finalAssuranceItem}>
-            <Cpu size={14} aria-hidden="true" />
-            <span>Open Source Compact Contracts</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function LandingPage() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.isRevealed);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-    );
-
-    const revealElements = document.querySelectorAll(`.${styles.reveal}`);
-    revealElements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div className={styles.landingShell}>
-      <LandingNavbar />
-      <main>
-        <Hero />
-        <TechnologyStrip />
-        <HowItWorks />
-        <AccessFlow />
-        <PrivacyArchitecture />
-        <Features />
-        <WhyMidnight />
-        <Statement />
-        <FinalCTA />
       </main>
+
       <LandingFooter />
     </div>
   );
