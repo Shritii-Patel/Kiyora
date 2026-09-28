@@ -57,8 +57,8 @@ export function Navigation() {
       )}
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-dark p-1" aria-hidden="true">
-            <Image src="/logo.svg" alt="" width={28} height={28} className="h-full w-full" priority />
+          <span className="flex h-7 w-7 items-center justify-center rounded-md overflow-hidden" aria-hidden="true">
+            <Image src="/stitch/5e7077903d6849efbf0c19a4d13b7d75.png" alt="Kiyora" width={28} height={28} className="h-full w-full object-contain" priority />
           </span>
           <span className="font-display text-lg text-primary">Kiyora</span>
         </Link>

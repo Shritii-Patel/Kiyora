@@ -137,8 +137,8 @@ export function LandingNavbar() {
               onClick={() => setMenuOpen(false)}
             >
               <Image
-                src="/stitch/logo.svg"
-                alt="Kiyora Geometric Logo"
+                src="/stitch/5e7077903d6849efbf0c19a4d13b7d75.png"
+                alt="Kiyora Emblem Logo"
                 width={30}
                 height={30}
                 className="h-7 w-auto object-contain"
