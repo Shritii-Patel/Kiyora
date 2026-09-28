@@ -7,6 +7,7 @@ import {
   ArrowRight,
   Check,
   CheckCircle2,
+  Copy,
   Cpu,
   Database,
   ExternalLink,
@@ -22,11 +23,19 @@ import {
 import { useState } from "react";
 import { LandingFooter } from "./LandingFooter";
 import { LandingNavbar } from "./LandingNavbar";
+import RotatingEmblem from "./RotatingEmblem";
 
 export function LandingPage() {
+  const [copiedAddress, setCopiedAddress] = useState(false);
   const [selectedSchema, setSelectedSchema] = useState<string[]>(["income", "jurisdiction"]);
   const [isProving, setIsProving] = useState(false);
   const [proveProgress, setProveProgress] = useState(78);
+
+  const handleCopyAddress = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedAddress(true);
+    setTimeout(() => setCopiedAddress(false), 2000);
+  };
 
   const toggleSchema = (id: string) => {
     setSelectedSchema((prev) =>
@@ -60,7 +69,7 @@ export function LandingPage() {
           {/* ============================================================== */}
           <section
             id="product"
-            className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-8 pb-4 sm:pb-6 lg:pt-12 lg:pb-8 px-4 sm:px-6 md:px-12 lg:px-16 overflow-hidden bg-gradient-to-b from-[#fbf8f5] via-[#f7f2ed] to-[#f6eee7]"
+            className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-8 pb-16 sm:pb-20 lg:pt-12 lg:pb-24 px-4 sm:px-6 md:px-12 lg:px-16 overflow-hidden bg-gradient-to-b from-[#fbf8f5] via-[#f7f2ed] to-[#f6eee7]"
           >
             {/* Soft warm diffused ambient glow */}
             <div className="absolute top-1/4 right-[10%] w-[520px] h-[520px] rounded-full bg-gradient-to-br from-[#f2dfcf]/45 via-[#ecd4c2]/35 to-transparent blur-3xl pointer-events-none -z-0" />
@@ -134,7 +143,7 @@ export function LandingPage() {
 
             {/* Clearly visible Kiyora Typography Watermark positioned above smoke */}
             <div
-              className="absolute -bottom-8 sm:-bottom-12 left-4 sm:left-8 text-[140px] sm:text-[190px] md:text-[230px] font-bold tracking-tighter text-[#2a1a12]/[0.10] select-none pointer-events-none z-[2] font-sans leading-none"
+              className="absolute -bottom-8 sm:-bottom-8 left-4 sm:left-8 text-[140px] sm:text-[190px] md:text-[230px] font-bold tracking-tighter text-[#2a1a12]/[0.10] select-none pointer-events-none z-[2] font-sans leading-none"
               aria-hidden="true"
             >
               kiyora
@@ -142,7 +151,7 @@ export function LandingPage() {
 
             <div className="relative z-10 max-w-[1240px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
               {/* Left Column: Copy, Capsule Pill, Input Bar, Trust Social Proof */}
-              <div className="lg:col-span-6 xl:col-span-7 flex flex-col items-start pr-0 lg:pr-6">
+              <div className="lg:col-span-6 xl:col-span-6 flex flex-col items-start pr-0 lg:pr-6">
                 {/* Badge Pill */}
                 <div className="flex flex-wrap items-center gap-3 mb-6">
                   <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f1e6dc]/80 border border-[#e5d4c5] text-[#6b584d] font-mono text-[12px] font-medium tracking-wide shadow-xs">
@@ -214,23 +223,25 @@ export function LandingPage() {
                 </div>
               </div>
 
-              {/* Right Column: Card photograph in warm lighting with floating frosted pill labels */}
-              <div className="lg:col-span-6 xl:col-span-5 relative flex items-center justify-center lg:justify-end mt-4 lg:mt-0">
-                <div className="relative w-full max-w-[390px] md:max-w-[430px]">
-                  {/* Card Image Container with titanium smart card */}
-                  <div className="relative rounded-3xl overflow-hidden shadow-[0_28px_60px_-15px_rgba(50,38,30,0.22)] border border-[#ebdcd0]/80 bg-gradient-to-b from-[#eadecc]/30 to-transparent">
-                    <Image
-                      src="/stitch/card-titanium.png"
-                      alt="Kiyora Cryptographic Titanium Physical Smart Card held in hand"
-                      width={896}
-                      height={1200}
-                      priority
-                      className="w-full h-auto object-cover block transform transition-transform duration-700 hover:scale-[1.02]"
-                    />
+              {/* Right Column: 3D Metallic Cryptographic Hardware Emblem */}
+              <div className="lg:col-span-6 xl:col-span-6 relative flex items-center justify-center lg:justify-end mt-6 lg:mt-0">
+                <div className="relative w-full max-w-[530px] sm:max-w-[600px] lg:max-w-[700px] flex items-center justify-center">
+                  {/* Radiant copper-amber studio backdrop glow */}
+                  <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[440px] sm:w-[560px] h-[440px] sm:h-[560px] rounded-full blur-[85px] sm:blur-[115px] pointer-events-none -z-0 opacity-85"
+                    style={{
+                      background:
+                        "radial-gradient(circle, rgba(224, 105, 30, 0.48) 0%, rgba(185, 75, 18, 0.28) 45%, rgba(145, 55, 12, 0.12) 70%, transparent 85%)",
+                    }}
+                  />
+
+                  {/* 3D Metallic Emblem Asset (Smooth 360° Horizontal Rotation) */}
+                  <div className="relative z-10 w-full flex items-center justify-center">
+                    <RotatingEmblem />
                   </div>
 
                   {/* Floating Frosted Pill 1: Top Left */}
-                  <div className="absolute -top-3 left-2 sm:-left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(40,30,24,0.1)]">
+                  <div className="absolute top-2 -left-2 sm:-left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(40,30,24,0.12)]">
                     <div className="w-4 h-4 rounded-full bg-[#a35e38] flex items-center justify-center text-white shrink-0 shadow-xs">
                       <Check size={10} strokeWidth={3} />
                     </div>
@@ -240,7 +251,7 @@ export function LandingPage() {
                   </div>
 
                   {/* Floating Frosted Pill 2: Middle Right */}
-                  <div className="absolute top-[42%] -right-2 sm:-right-8 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(40,30,24,0.1)]">
+                  <div className="absolute top-[48%] -right-2 sm:-right-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(40,30,24,0.12)]">
                     <div className="w-4 h-4 rounded-full bg-[#a35e38] flex items-center justify-center text-white shrink-0 shadow-xs">
                       <Check size={10} strokeWidth={3} />
                     </div>
@@ -250,7 +261,7 @@ export function LandingPage() {
                   </div>
 
                   {/* Floating Frosted Pill 3: Bottom Left */}
-                  <div className="absolute bottom-12 -left-2 sm:-left-5 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(40,30,24,0.1)]">
+                  <div className="absolute bottom-4 left-1 sm:-left-3 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(40,30,24,0.12)]">
                     <div className="w-4 h-4 rounded-full bg-[#006c48] flex items-center justify-center text-white shrink-0 shadow-xs">
                       <Check size={10} strokeWidth={3} />
                     </div>
@@ -268,7 +279,7 @@ export function LandingPage() {
           {/* ============================================================== */}
           <section
             id="privacy"
-            className="relative w-full pt-8 sm:pt-10 pb-20 px-4 sm:px-6 md:px-12 lg:px-16 bg-gradient-to-b from-[#f6eee7] via-[#faf5f1] to-[#fbf9f8] border-b border-[#e9e8e7] overflow-hidden"
+            className="relative w-full pt-10 sm:pt-14 pb-20 px-4 sm:px-6 md:px-12 lg:px-16 bg-gradient-to-b from-[#f6eee7] via-[#faf5f1] to-[#fbf9f8] border-b border-[#e9e8e7] overflow-hidden"
           >
             {/* Seamless continuing smoke merging completely with hero */}
             <div className="absolute inset-x-0 top-0 h-[480px] sm:h-[560px] pointer-events-none overflow-hidden z-0">
@@ -319,6 +330,86 @@ export function LandingPage() {
             </div>
 
             <div className="relative z-10 max-w-[1240px] mx-auto">
+              {/* ============================================================== */}
+              {/* MIDNIGHT PREVIEW LIVE NODE STATUS PANEL                       */}
+              {/* Centered at the top, preceding The Problem section             */}
+              {/* ============================================================== */}
+              <div className="w-full flex justify-center mb-14 sm:mb-18">
+                <div className="w-full max-w-[1140px] rounded-2xl p-4 sm:px-6 sm:py-4.5 bg-[#faf5ef]/90 hover:bg-[#faf5ef]/95 backdrop-blur-xl border border-[#ded0c1]/80 shadow-[0_12px_40px_rgba(46,38,34,0.08)] transition-all">
+                  {/* Primary Infrastructure Status Row */}
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-3 border-b border-[#e9ded3]/80">
+                    {/* Left: Node status + Block height + Latency */}
+                    <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 text-[13px]">
+                      <div className="flex items-center gap-2 font-medium text-[#241d1a]">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#1b8a5a] opacity-75 duration-1000" />
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#1b8a5a]" />
+                        </span>
+                        <span>Midnight PREVIEW Live Node</span>
+                      </div>
+
+                      <span className="text-[#cbbeaf] hidden sm:inline" aria-hidden="true">|</span>
+
+                      <div className="font-mono text-[12px] text-[#5c4f46] flex items-center gap-2">
+                        <span>Block #1,065,601</span>
+                        <span className="text-[#baa99b]" aria-hidden="true">·</span>
+                        <span className="text-[#1b8a5a] font-medium">480ms Latency</span>
+                      </div>
+                    </div>
+
+                    {/* Right: Verified Contract & Spec Badges */}
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 text-[12px]">
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#eee2d6]/75 border border-[#ddcfc1] font-mono text-[#2c231f]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#1b8a5a]" />
+                        <span>Verified Contract <span className="font-semibold text-[#181311]">0794f000...f56123</span></span>
+                      </div>
+
+                      <div className="flex items-center gap-1.5 text-[#5c4f46] px-2 py-0.5">
+                        <span className="w-1 h-1 rounded-full bg-[#1b8a5a]" />
+                        <span>Zero Docker Required for Clients</span>
+                      </div>
+
+                      <div className="flex items-center gap-1.5 text-[#5c4f46] px-2 py-0.5">
+                        <span className="w-1 h-1 rounded-full bg-[#1b8a5a]" />
+                        <span>WASM ZK Prover</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Secondary Row: Preprod Contract Address & Explorer CTA */}
+                  <div className="pt-3 flex flex-col md:flex-row md:items-center justify-between gap-3 text-[12.5px]">
+                    <div className="flex flex-wrap items-center gap-2 text-[#5c4f46] min-w-0">
+                      <span className="font-mono text-[11px] uppercase tracking-wider text-[#7a6a5e] font-semibold shrink-0">
+                        Kiyora Preprod Contract
+                      </span>
+                      <span className="text-[#cbbeaf] hidden sm:inline" aria-hidden="true">:</span>
+                      <code className="font-mono text-[12px] text-[#241d1a] bg-[#f0e4d9]/85 px-3 py-1 rounded-md border border-[#decfc1] select-all break-all sm:break-normal">
+                        0xa6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19
+                      </code>
+                      <button
+                        type="button"
+                        onClick={() => handleCopyAddress("0xa6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19")}
+                        className="p-1 rounded text-[#7c6d62] hover:text-[#181311] hover:bg-[#eadecc]/70 transition-colors"
+                        title="Copy contract address"
+                        aria-label="Copy contract address"
+                      >
+                        {copiedAddress ? <Check size={13} className="text-[#1b8a5a]" /> : <Copy size={13} />}
+                      </button>
+                    </div>
+
+                    <a
+                      href="https://explorer.1am.xyz/contract/a6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-1.5 text-[12.5px] font-medium text-[#2e2622] hover:text-[#000] shrink-0 transition-colors self-start md:self-auto"
+                    >
+                      <span>View Contract Explorer</span>
+                      <ArrowRight size={13} className="transition-transform duration-150 group-hover:translate-x-0.5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               <div className="mb-12">
                 <span className="font-mono text-[12px] text-[#5f5e5e] tracking-wider uppercase mb-2 block font-semibold">
                   THE PROBLEM
