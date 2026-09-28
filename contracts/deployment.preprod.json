@@ -1,0 +1,20 @@
+{
+  "network": "preprod",
+  "networkId": "preprod",
+  "contractAddress": "0xa6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19",
+  "deployerAddress": "mn_addr_preprod1p0dw747p4ds05me6mjk8es3esrf0e38760nlx00raag7djuzyl6svwky8d",
+  "deploymentTransaction": "0xf97e1bc920c3c290467ff025671242c24f8b06a63e44ccd3330ad76929450896",
+  "blockHeight": 2707140,
+  "deployedAt": "2026-09-25T18:21:54.000Z",
+  "compilerVersion": "0.31.1",
+  "circuits": [
+    "add_valid_credential",
+    "verify_access"
+  ],
+  "endpoints": {
+    "rpcUrl": "https://rpc.preprod.midnight.network",
+    "indexerUrl": "https://indexer.preprod.midnight.network/api/v4/graphql",
+    "explorerUrl": "https://explorer.1am.xyz/contract/a6fb686b5fd483e86b8010eaa3cbaa28f2a00d16dfe9097b2130e82f1a8add19"
+  },
+  "verificationStatus": "VERIFIED_ON_CHAIN"
+}

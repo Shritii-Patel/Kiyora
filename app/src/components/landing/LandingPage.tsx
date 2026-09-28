@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import {
   AlertTriangle,
@@ -8,14 +7,8 @@ import {
   Check,
   CheckCircle2,
   Copy,
-  Cpu,
-  Database,
-  ExternalLink,
   KeyRound,
-  Lock,
   Shield,
-  ShieldCheck,
-  Sparkles,
   Star,
   Users,
   Verified,

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Copy, Check, ExternalLink } from "lucide-react";
 import { useState } from "react";

@@ -101,7 +101,7 @@ export default function RotatingEmblem() {
       const z = pos.getZ(i);
 
       let u = x / (aspect * scale) + 0.5;
-      let v = y / scale + 0.5;
+      const v = y / scale + 0.5;
 
       // When viewed from behind, mirror U so the insignia reads correctly on both sides
       if (z < -0.05) {
