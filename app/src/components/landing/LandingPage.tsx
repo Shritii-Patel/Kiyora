@@ -12,7 +12,6 @@ import {
   ExternalLink,
   KeyRound,
   Lock,
-  Mail,
   Shield,
   ShieldCheck,
   Sparkles,
@@ -25,7 +24,6 @@ import { LandingFooter } from "./LandingFooter";
 import { LandingNavbar } from "./LandingNavbar";
 
 export function LandingPage() {
-  const [email, setEmail] = useState("");
   const [selectedSchema, setSelectedSchema] = useState<string[]>(["income", "jurisdiction"]);
   const [isProving, setIsProving] = useState(false);
   const [proveProgress, setProveProgress] = useState(78);
@@ -62,68 +60,84 @@ export function LandingPage() {
           {/* ============================================================== */}
           <section
             id="product"
-            className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-8 pb-8 sm:pb-10 lg:pt-12 lg:pb-12 px-4 sm:px-6 md:px-12 lg:px-16 overflow-hidden bg-gradient-to-b from-[#fbf8f5] via-[#f7f2ed] to-[#f5ede6] border-b border-[#e4dad0]"
+            className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-8 pb-4 sm:pb-6 lg:pt-12 lg:pb-8 px-4 sm:px-6 md:px-12 lg:px-16 overflow-hidden bg-gradient-to-b from-[#fbf8f5] via-[#f7f2ed] to-[#f6eee7]"
           >
             {/* Soft warm diffused ambient glow */}
             <div className="absolute top-1/4 right-[10%] w-[520px] h-[520px] rounded-full bg-gradient-to-br from-[#f2dfcf]/45 via-[#ecd4c2]/35 to-transparent blur-3xl pointer-events-none -z-0" />
             <div className="absolute -bottom-10 left-10 w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-[#f3e5d8]/40 to-transparent blur-3xl pointer-events-none -z-0" />
 
-            {/* Faint watermark typography in background */}
-            <div
-              className="absolute -bottom-6 left-6 text-[130px] md:text-[220px] font-bold tracking-tighter text-[#1f1917]/[0.035] select-none pointer-events-none z-0 font-sans leading-none"
-              aria-hidden="true"
-            >
-              kiyora
-            </div>
-
             {/* ============================================================== */}
-            {/* Soft dark cream blurry smoke effect extending flush to border   */}
+            {/* Rich dark cream blurry smoke effect merging into next section  */}
             {/* ============================================================== */}
-            <div className="absolute inset-x-0 bottom-0 h-[420px] sm:h-[480px] pointer-events-none overflow-hidden z-0">
-              {/* Wide ambient base smoke glow extending directly to the bottom border */}
+            <div className="absolute inset-x-0 bottom-0 h-[520px] sm:h-[620px] pointer-events-none overflow-hidden z-0">
+              {/* Wide ambient base smoke glow extending directly down */}
               <div
                 className="absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(ellipse 100% 88% at 50% 100%, rgba(224, 182, 160, 0.72) 0%, rgba(234, 204, 188, 0.55) 45%, rgba(246, 228, 216, 0.28) 75%, transparent 100%)",
+                    "radial-gradient(ellipse 110% 95% at 50% 100%, rgba(220, 172, 146, 0.88) 0%, rgba(232, 196, 174, 0.72) 35%, rgba(244, 220, 204, 0.45) 65%, transparent 100%)",
                 }}
               />
 
               {/* Billowing smoke cloud 1: Warm terracotta-cream mist under right hand/card */}
               <div
-                className="absolute -bottom-8 right-[0%] sm:right-[10%] w-[720px] h-[380px] rounded-full blur-[80px] sm:blur-[100px] opacity-90"
+                className="absolute -bottom-16 right-[-5%] sm:right-[5%] w-[820px] h-[440px] rounded-full blur-[90px] sm:blur-[120px] opacity-95"
                 style={{
                   background:
-                    "radial-gradient(circle, rgba(214, 170, 146, 0.8) 0%, rgba(232, 198, 178, 0.58) 55%, transparent 80%)",
+                    "radial-gradient(circle, rgba(210, 160, 134, 0.92) 0%, rgba(228, 190, 168, 0.68) 50%, transparent 80%)",
                 }}
               />
 
               {/* Billowing smoke cloud 2: Soft dark cream mist under left stats and watermark */}
               <div
-                className="absolute -bottom-10 left-[0%] sm:left-[4%] w-[680px] h-[360px] rounded-full blur-[75px] sm:blur-[95px] opacity-85"
+                className="absolute -bottom-20 left-[-5%] sm:left-[0%] w-[780px] h-[420px] rounded-full blur-[85px] sm:blur-[115px] opacity-90"
                 style={{
                   background:
-                    "radial-gradient(circle, rgba(224, 184, 162, 0.78) 0%, rgba(238, 210, 194, 0.5) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(222, 178, 154, 0.9) 0%, rgba(236, 204, 186, 0.65) 55%, transparent 80%)",
                 }}
               />
 
               {/* Billowing smoke cloud 3: Deep warm peach-cream core smoke puff in center */}
               <div
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[640px] h-[280px] rounded-full blur-[65px] sm:blur-[85px] opacity-80"
+                className="absolute bottom-[-20px] left-1/2 -translate-x-1/2 w-[740px] h-[340px] rounded-full blur-[75px] sm:blur-[105px] opacity-90"
                 style={{
                   background:
-                    "radial-gradient(ellipse, rgba(210, 164, 140, 0.7) 0%, rgba(230, 196, 176, 0.45) 65%, transparent 85%)",
+                    "radial-gradient(ellipse, rgba(206, 154, 128, 0.85) 0%, rgba(226, 188, 166, 0.58) 60%, transparent 85%)",
                 }}
               />
 
-              {/* Atmospheric horizontal drifting mist overlay right at the border line */}
+              {/* Wispy upper smoke tendrils rising up towards stats & kiyora text */}
               <div
-                className="absolute bottom-0 inset-x-0 h-[260px] opacity-60 blur-[50px]"
+                className="absolute bottom-[100px] left-[5%] w-[620px] h-[240px] rounded-full blur-[70px] opacity-65"
                 style={{
-                  background:
-                    "linear-gradient(90deg, rgba(235, 205, 190, 0.4) 0%, rgba(224, 188, 168, 0.65) 25%, rgba(212, 172, 148, 0.75) 50%, rgba(228, 198, 182, 0.65) 75%, rgba(235, 205, 190, 0.4) 100%)",
+                  background: "radial-gradient(circle, rgba(230, 195, 175, 0.75) 0%, transparent 75%)",
                 }}
               />
+
+              {/* Wispy upper smoke tendrils rising up towards the card */}
+              <div
+                className="absolute bottom-[90px] right-[5%] w-[580px] h-[220px] rounded-full blur-[65px] opacity-70"
+                style={{
+                  background: "radial-gradient(circle, rgba(226, 188, 168, 0.8) 0%, transparent 75%)",
+                }}
+              />
+
+              {/* Atmospheric horizontal drifting mist overlay */}
+              <div
+                className="absolute bottom-0 inset-x-0 h-[280px] opacity-65 blur-[50px]"
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(235, 205, 190, 0.45) 0%, rgba(224, 188, 168, 0.75) 25%, rgba(212, 172, 148, 0.85) 50%, rgba(228, 198, 182, 0.75) 75%, rgba(235, 205, 190, 0.45) 100%)",
+                }}
+              />
+            </div>
+
+            {/* Clearly visible Kiyora Typography Watermark positioned above smoke */}
+            <div
+              className="absolute -bottom-8 sm:-bottom-12 left-4 sm:left-8 text-[140px] sm:text-[190px] md:text-[230px] font-bold tracking-tighter text-[#2a1a12]/[0.10] select-none pointer-events-none z-[2] font-sans leading-none"
+              aria-hidden="true"
+            >
+              kiyora
             </div>
 
             <div className="relative z-10 max-w-[1240px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -157,31 +171,22 @@ export function LandingPage() {
                   exposing credentials.
                 </p>
 
-                {/* Email Signup / Instant Try Bar */}
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    window.location.href = `/admin?email=${encodeURIComponent(email)}`;
-                  }}
-                  className="w-full max-w-[460px] bg-white rounded-2xl p-1.5 sm:p-2 border border-[#e8dfd5] shadow-[0_6px_28px_rgba(46,38,34,0.06)] flex items-center gap-2 mb-10 focus-within:border-[#2e2622]/50 transition-all"
-                >
-                  <div className="flex-1 flex items-center pl-3">
-                    <Mail size={18} className="text-[#a89b91] mr-2.5 shrink-0" />
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Your E-mail"
-                      className="w-full bg-transparent border-0 outline-none text-[#241d1a] placeholder-[#9c9188] text-[15px]"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="h-[44px] px-6 rounded-xl bg-[#2e2622] hover:bg-[#181311] text-white font-medium text-[14.5px] transition-all flex items-center justify-center shrink-0 shadow-xs active:scale-[0.98]"
+                {/* Action Buttons */}
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-10">
+                  <Link
+                    href="/gate"
+                    className="group h-[48px] px-6 rounded-xl bg-[#2e2622] hover:bg-[#181311] text-white font-medium text-[15px] transition-all duration-200 flex items-center justify-center gap-2.5 shadow-[0_2px_12px_rgba(46,38,34,0.12)] hover:shadow-[0_4px_16px_rgba(46,38,34,0.22)] active:scale-[0.98]"
                   >
-                    Try Kiyora
-                  </button>
-                </form>
+                    <span>Try the live demo</span>
+                    <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </Link>
+                  <Link
+                    href="/admin"
+                    className="h-[48px] px-6 rounded-xl bg-white/90 hover:bg-white text-[#2e2622] hover:text-[#181311] border border-[#e5d9ce] hover:border-[#cfc1b3] font-medium text-[15px] transition-all duration-200 flex items-center justify-center gap-2 shadow-[0_2px_8px_rgba(46,38,34,0.04)] hover:shadow-[0_4px_14px_rgba(46,38,34,0.08)] active:scale-[0.98]"
+                  >
+                    <span>Open operator console</span>
+                  </Link>
+                </div>
 
                 {/* Trust Metrics / Social Proof matching attached reference */}
                 <div className="flex items-center gap-6 sm:gap-8 pt-2">
@@ -263,9 +268,57 @@ export function LandingPage() {
           {/* ============================================================== */}
           <section
             id="privacy"
-            className="w-full py-20 px-4 sm:px-6 md:px-12 lg:px-16 bg-[#fbf9f8] border-b border-[#e9e8e7]"
+            className="relative w-full pt-8 sm:pt-10 pb-20 px-4 sm:px-6 md:px-12 lg:px-16 bg-gradient-to-b from-[#f6eee7] via-[#faf5f1] to-[#fbf9f8] border-b border-[#e9e8e7] overflow-hidden"
           >
-            <div className="max-w-[1240px] mx-auto">
+            {/* Seamless continuing smoke merging completely with hero */}
+            <div className="absolute inset-x-0 top-0 h-[480px] sm:h-[560px] pointer-events-none overflow-hidden z-0">
+              {/* Dense upper warm mist wash matching hero base */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 110% 88% at 50% 0%, rgba(220, 172, 146, 0.85) 0%, rgba(232, 196, 174, 0.68) 35%, rgba(244, 220, 204, 0.38) 65%, transparent 100%)",
+                }}
+              />
+
+              {/* Billowing cloud continuing on right */}
+              <div
+                className="absolute -top-24 right-[-5%] sm:right-[5%] w-[820px] h-[380px] rounded-full blur-[90px] sm:blur-[120px] opacity-90"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(210, 160, 134, 0.88) 0%, rgba(228, 190, 168, 0.58) 50%, transparent 80%)",
+                }}
+              />
+
+              {/* Billowing cloud continuing on left */}
+              <div
+                className="absolute -top-24 left-[-5%] sm:left-[0%] w-[780px] h-[360px] rounded-full blur-[85px] sm:blur-[115px] opacity-85"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(222, 178, 154, 0.85) 0%, rgba(236, 204, 186, 0.52) 55%, transparent 80%)",
+                }}
+              />
+
+              {/* Billowing center mist plume */}
+              <div
+                className="absolute top-[-30px] left-1/2 -translate-x-1/2 w-[740px] h-[300px] rounded-full blur-[75px] sm:blur-[105px] opacity-85"
+                style={{
+                  background:
+                    "radial-gradient(ellipse, rgba(206, 154, 128, 0.78) 0%, rgba(226, 188, 166, 0.5) 60%, transparent 85%)",
+                }}
+              />
+
+              {/* Atmospheric horizontal drifting veil */}
+              <div
+                className="absolute top-0 inset-x-0 h-[240px] opacity-55 blur-[50px]"
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(235, 205, 190, 0.35) 0%, rgba(224, 188, 168, 0.65) 25%, rgba(212, 172, 148, 0.75) 50%, rgba(228, 198, 182, 0.65) 75%, rgba(235, 205, 190, 0.35) 100%)",
+                }}
+              />
+            </div>
+
+            <div className="relative z-10 max-w-[1240px] mx-auto">
               <div className="mb-12">
                 <span className="font-mono text-[12px] text-[#5f5e5e] tracking-wider uppercase mb-2 block font-semibold">
                   THE PROBLEM
@@ -423,11 +476,10 @@ export function LandingPage() {
                         className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#f5f3f3] border border-[#e4e2e2]/60 cursor-pointer hover:bg-[#efece9] transition-colors"
                       >
                         <span
-                          className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${
-                            selectedSchema.includes("income")
-                              ? "bg-[#1b1c1c] text-white"
-                              : "border border-[#a89b91] bg-white"
-                          }`}
+                          className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${selectedSchema.includes("income")
+                            ? "bg-[#1b1c1c] text-white"
+                            : "border border-[#a89b91] bg-white"
+                            }`}
                         >
                           {selectedSchema.includes("income") && <Check size={11} strokeWidth={3} />}
                         </span>
@@ -441,11 +493,10 @@ export function LandingPage() {
                         className="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#f5f3f3] border border-[#e4e2e2]/60 cursor-pointer hover:bg-[#efece9] transition-colors"
                       >
                         <span
-                          className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${
-                            selectedSchema.includes("jurisdiction")
-                              ? "bg-[#1b1c1c] text-white"
-                              : "border border-[#a89b91] bg-white"
-                          }`}
+                          className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${selectedSchema.includes("jurisdiction")
+                            ? "bg-[#1b1c1c] text-white"
+                            : "border border-[#a89b91] bg-white"
+                            }`}
                         >
                           {selectedSchema.includes("jurisdiction") && <Check size={11} strokeWidth={3} />}
                         </span>
